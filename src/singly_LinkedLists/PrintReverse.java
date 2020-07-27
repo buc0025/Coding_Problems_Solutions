@@ -1,5 +1,5 @@
 package singly_LinkedLists;
-
+import java.util.*;
 /*
 https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list-in-reverse/problem?utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
 You are given the pointer to the head node of a linked list and you need to print all its elements in reverse order
