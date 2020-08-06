@@ -13,26 +13,26 @@ public class WordPattern {
 
     public boolean wordPattern(String pattern, String str) {
         String[] arr = str.split(" ");
-        String[] pat = pattern.split("");
 
-        if (arr.length != pat.length || pattern.length() == 0) {
+        if (arr.length != pattern.length()) {
             return false;
         }
 
-        Map<String, String> map = new HashMap<>();
+        Map<Character, String> map = new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            if (map.containsKey(pat[i])) {
-                if (!map.get(pat[i]).equals(arr[i])) {
+            char c = pattern.charAt(i);
+            if (map.containsKey(c)) {
+                if (!map.get(c).equals(arr[i])) {
                     return false;
                 }
             }
             if (map.containsValue(arr[i])) {
-                if (!arr[i].equals(map.get(pat[i]))) {
+                if (!arr[i].equals(map.get(c))) {
                     return false;
                 }
             }
-            map.put(pat[i], arr[i]);
+            map.put(c, arr[i]); //inputs first elements before checking if statements
         }
         return true;
     }

@@ -13,17 +13,18 @@ public class TwoSum {
 
         Map<Integer, Integer> map = new HashMap<>();
 
-        int[] sum = new int[2];
+        int index1 = -1;
+        int index2 = -1;
 
         for (int i = 0; i < nums.length; i++) {
             int diff = target - nums[i];
             if (map.containsKey(diff)) {
-                sum[0] = map.get(diff);
-                sum[1] = i;
+                index1 = map.get(diff);
+                index2 = i;
             }
             map.put(nums[i], i);
         }
-        return sum;
+        return new int[] {index1, index2};
     }
 
     //*****Brute Force****
