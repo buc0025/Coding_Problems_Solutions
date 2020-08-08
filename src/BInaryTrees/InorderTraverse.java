@@ -1,4 +1,4 @@
-package BInarySearchTrees;
+package BInaryTrees;
 /*
 https://www.hackerrank.com/challenges/tree-inorder-traversal/problem
 Complete the inOrder function in your editor below, which has  parameter: a pointer to the root of a binary tree.

@@ -1,4 +1,4 @@
-package BInarySearchTrees;
+package BInaryTrees;
 /*
 https://www.hackerrank.com/challenges/tree-postorder-traversal/problem
 Complete the postOrder function in your editor below, which has  parameter: a pointer to the root of a binary tree.
