@@ -8,33 +8,16 @@ Return true if and only if the given tree is univalued.
 public class UnivaluedBST {
 
     public boolean isUnivalTree(TreeNode root) {
-        int num = numNodes(root);
-        int sum = sumNodes(root);
+        return sameNum(root, root.val);
+    }
 
-        if (sum % num != 0) {
+    public boolean sameNum(TreeNode root, int num) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val != num) {
             return false;
-        } else {
-            return root.val == (sum / num);
         }
-    }
-
-    public int numNodes(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int countL = numNodes(root.left);
-        int countR = numNodes(root.right);
-
-        return countL + countR + 1;
-    }
-
-    public int sumNodes(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int countL = sumNodes(root.left);
-        int countR = sumNodes(root.right);
-
-        return countL + countR + root.val;
+        return sameNum(root.left, num) && sameNum(root.right, num);
     }
 }
