@@ -11,14 +11,12 @@ public class Shuffle {
     public int[] shuffle(int[] nums, int n) {
 
         int[] arr = new int[nums.length];
-        int first = 0;
-        int second = n;
 
         for (int i = 0; i < arr.length; i++) {
             if (i % 2 == 0) {
-                arr[i] = nums[first]; first++;
+                arr[i] = nums[i/2];
             } else {
-                arr[i] = nums[second]; second++;
+                arr[i] = nums[n]; n++;
             }
         }
 
