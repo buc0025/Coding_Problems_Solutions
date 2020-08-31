@@ -31,6 +31,6 @@ public class MaxProduct {
 
     }
 }
-//*************OLD SOLUTION with O(logN) runtime***********
+//*************OLD SOLUTION with O(n log n) runtime***********
 //Arrays.sort(nums);
 //return (nums[nums.length-1] - 1) * (nums[nums.length-2] - 1);
