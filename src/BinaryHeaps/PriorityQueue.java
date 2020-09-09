@@ -30,20 +30,24 @@ public class PriorityQueue {
 
         @Override
         public int compareTo(Student o) {
-            if (this.getCgpa() > o.getCgpa()) {
+            if(this.getCgpa() == o.getCgpa()) {
+                if(this.getName().equals(o.getName())) {
+                    if(this.getId() == o.getId()) {
+                        return 0;
+                    } else if (this.getId() < o.getId()) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+                else {
+                    return this.getName().compareTo(o.getName());
+                }
+
+            } else if (this.getCgpa() > o.getCgpa()) {
                 return -1;
-            } else if (this.getCgpa() < o.getCgpa()) {
-                return 1;
-            } else if (this.getName().compareTo(o.getName()) < 0) {
-                return -1;
-            } else if (this.getName().compareTo(o.getName()) > 0) {
-                return 1;
-            } else if (this.getId() > o.getId()) {
-                return -1;
-            } else if (this.getId() < o.getId()) {
-                return 1;
             } else {
-                return 0;
+                return 1;
             }
         }
 
@@ -60,10 +64,20 @@ public class PriorityQueue {
 
             List<Student> list = new ArrayList<>();
 
-            //******Not sure what to do here*********
+            for(String event : events){
+                if (event.contains("ENTER")){
+                    String str[] = event.split(" ");
+                    pq.add(new Student(Integer.valueOf(str[3]), str[1], Double.valueOf(str[2])));
+                }else if (event.contains("SERVED")){
+                    pq.poll();
+                }
+            }
+
+            while (!pq.isEmpty()) {
+                list.add(pq.poll());
+            }
 
             return list;
-
 
         }
     }
