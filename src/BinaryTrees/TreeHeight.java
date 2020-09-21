@@ -1,4 +1,4 @@
-package BInaryTrees;
+package BinaryTrees;
 /*
 https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem
 

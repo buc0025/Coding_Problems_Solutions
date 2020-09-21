@@ -1,4 +1,4 @@
-package BInaryTrees;
+package BinaryTrees;
 /*
 https://www.hackerrank.com/challenges/tree-preorder-traversal/problem
 Complete the preOrder function in your editor below, which has  parameter: a pointer to the root of a binary tree.

@@ -1,4 +1,4 @@
-package BInaryTrees;
+package BinaryTrees;
 /*
 https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/
 Given a binary tree, return the sum of values of nodes with even-valued grandparent.  (A grandparent of a node is
