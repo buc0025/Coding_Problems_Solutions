@@ -16,13 +16,13 @@ Return the maximum number of coins which you can have.
 public class MaximumCoins {
     //**************Uses built-in sort for arrays*******
     public int maxCoins(int[] piles) {
-        int num = piles.length / 3;
+        int num = piles.length / 3;     //divides coin piles by number of people (3)
         int result = 0;
 
         Arrays.sort(piles);
 
-        for (int i = piles.length - 2; i >= num; i-= 2) {
-            result += piles[i];
+        for (int i = piles.length - 2; i >= num; i-= 2) {   //you will get second largest coin pile in each iteration
+            result += piles[i];                             //after everyone picks their designated pile
         }
         return result;
     }
@@ -31,7 +31,7 @@ public class MaximumCoins {
         int num = piles.length / 3;
         int result = 0;
 
-        // Arrays.sort(piles);
+        // Sorts array using merge sort implemented below
         sort(piles, 0, piles.length - 1);
 
         for (int i = piles.length - 2; i >= num; i-= 2) {
@@ -39,7 +39,7 @@ public class MaximumCoins {
         }
         return result;
     }
-
+    //merge sort implementation from Geeks For Geeks
     static void merge(int[] arr, int l, int m, int r) {
         int lLen = m - l + 1;
         int rLen = r - m;
