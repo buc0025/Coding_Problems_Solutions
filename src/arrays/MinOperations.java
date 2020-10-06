@@ -11,6 +11,7 @@ Given an integer n, the length of the array. Return the minimum number of operat
  */
 
 public class MinOperations {
+    //*******Solution passes test cases but exceeds time limit*******
     public int minOperations(int n) {
         int[] arr = new int[n];
         int count = 0;
@@ -20,7 +21,7 @@ public class MinOperations {
         }
         // left and right pointers in array
         int left = 0;
-        int right = arr.length-1;
+        int right = arr.length - 1;
 
         while (left < right) {
             // if neither elements equal to n then subtract 1 from right
@@ -36,6 +37,29 @@ public class MinOperations {
                 right--;
             }
             count++;
+        }
+        return count;
+    }
+    //*******Working solution but has nested while loops********
+    public int minOperations(int n) {
+        int[] arr = new int[n];
+        int count = 0;
+        //populate array
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (2 * i) + 1;
+        }
+        // left and right pointers in array
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            while (arr[left] != arr[right]) {
+                arr[left] += 1;
+                arr[right] -= 1;
+                count++;
+            }
+            left++;
+            right--;
         }
         return count;
     }
