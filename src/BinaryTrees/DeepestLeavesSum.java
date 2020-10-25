@@ -5,6 +5,38 @@ Given a binary tree, return the sum of values of its deepest leaves.
  */
 
 public class DeepestLeavesSum {
+    public int deepestLeavesSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null); // Let's me know to change level
+        int sum = 0;
+
+        // The queue will never be empty since null is being added each
+        // time queue.poll() == null. Once the queue size gets below 2,
+        // the queue only contains null.
+        while (queue.size() >= 2) {
+            TreeNode top = queue.poll();
+            if (top != null) {
+                sum += top.val;
+                if (top.left != null) {
+                    queue.add(top.left);
+                }
+                if (top.right != null) {
+                    queue.add(top.right);
+                }
+            }
+
+            if (top == null) {
+                queue.add(null); // null is added to distinguish levels
+                sum = 0; // Sum resets to 0 at each new level
+            }
+        }
+        return sum;
+    }
 
     public static class PositionNode {
         TreeNode node;
