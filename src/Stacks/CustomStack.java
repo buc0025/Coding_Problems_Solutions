@@ -15,6 +15,42 @@ void inc(int k, int val) Increments the bottom k elements of the stack by val. I
 
 public class CustomStack {
     final int maxSize;
+    List<Integer> stack;
+
+    public CustomStack(int maxSize) {
+        this.maxSize = maxSize;
+        stack = new ArrayList<>();
+    }
+
+    public void push(int x) {
+        if (stack.size() < maxSize) {
+            stack.add(x);
+        }
+    }
+
+    public int pop() {
+        if (stack.isEmpty()) {
+            return -1;
+        } else {
+            int top = stack.size() -1;
+            int topNum = stack.get(top);
+            stack.remove(top);
+            return topNum;
+        }
+    }
+
+    public void increment(int k, int val) {
+        for (int i = 0; i < stack.size(); i++) {
+            if (k == i) {
+                break;
+            }
+            int front = stack.remove(i);
+            stack.add(i, front + val);
+        }
+    }
+
+
+    final int maxSize;
     ArrayList<Integer> arr;
 
     public CustomStack(int maxSize) {
