@@ -11,6 +11,25 @@ Given an integer n, the length of the array. Return the minimum number of operat
  */
 
 public class MinOperations {
+    public int minOperations(int n) {
+        int sum = 0;
+
+        // There's a pattern of duplicates elements of first half of array if n is even
+        // the duplicate can be added together to get the number of operations to make
+        // all the elements of the array equal
+        if (n % 2 == 0) {
+            for (int i = 0; i < n / 2; i++) {
+                sum += (2 * i) + 1;
+            }
+        // A similar pattern appears if n is off except the pattern will (2 * i) + 2 for the first half
+        } else {
+            for (int i = 0; i < n / 2; i++) {
+                sum += (2 * i) + 2;
+            }
+        }
+        return sum;
+    }
+
     //*******Solution passes test cases but exceeds time limit*******
     public int minOperations(int n) {
         int[] arr = new int[n];
