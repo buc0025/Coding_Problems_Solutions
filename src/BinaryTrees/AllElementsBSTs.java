@@ -8,6 +8,59 @@ Return a list containing all the integers from both trees sorted in ascending or
 
 public class AllElementsBSTs {
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+
+        return allElements(inOrder(root1, list1), inOrder(root2, list2));
+    }
+
+    public List<Integer> allElements(List<Integer> root1List, List<Integer> root2List) {
+        List<Integer> combineAll = new ArrayList<>();
+
+        if (root1List == null) {
+            return root2List;
+        }
+
+        if (root2List == null) {
+            return root1List;
+        }
+        // Adds smaller int from the two lists to new combineAll list
+        // and removes smaller int from original list
+        while (!root1List.isEmpty() && !root2List.isEmpty()) {
+            if (root1List.get(0) < root2List.get(0)) {
+                combineAll.add(root1List.get(0));
+                root1List.remove(0);
+            } else {
+                combineAll.add(root2List.get(0));
+                root2List.remove(0);
+            }
+        }
+        // Adds remaining integers to combineAll list
+        while (!root1List.isEmpty()) {
+            combineAll.add(root1List.get(0));
+            root1List.remove(0);
+        }
+        // Adds remaining integers to combineAll list
+        while (!root2List.isEmpty()) {
+            combineAll.add(root2List.get(0));
+            root2List.remove(0);
+        }
+        return combineAll;
+    }
+    // Method returns sorted list from BST
+    public List<Integer> inOrder(TreeNode root, List list) {
+        if (root == null) {
+            return null;
+        }
+
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+
+        return list;
+    }
+
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
         List<Integer> tree1 = new ArrayList<>();
         List<Integer> tree2 = new ArrayList<>();
 
