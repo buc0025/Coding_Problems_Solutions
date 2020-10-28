@@ -9,6 +9,39 @@ If there are no nodes with an even-valued grandparent, return 0.
 public class EvenGrandparents {
 
     public int sumEvenGrandparent(TreeNode root) {
+        int sum = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode top = queue.poll();
+            if (top.left != null) {
+                queue.add(top.left);
+                // Checking to see if there's a grandchild in left sub tree
+                // if node is even-valued
+                if (top.left.left != null && top.val % 2 == 0) {
+                    sum += top.left.left.val;
+                }
+                if (top.left.right != null && top.val % 2 == 0) {
+                    sum += top.left.right.val;
+                }
+            }
+            if (top.right != null) {
+                queue.add(top.right);
+                // Checking to see if there's a grandchild in right sub tree
+                // if node is even-valued
+                if (top.right.left != null && top.val % 2 == 0) {
+                    sum += top.right.left.val;
+                }
+                if (top.right.right != null && top.val % 2 == 0) {
+                    sum += top.right.right.val;
+                }
+            }
+        }
+        return sum;
+    }
+
+    public int sumEvenGrandparent(TreeNode root) {
         return sumHelper(root, 0);
     }
 
