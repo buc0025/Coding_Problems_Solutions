@@ -9,6 +9,37 @@ words that match the given pattern. You may return the answer in any order.
  */
 
 public class ReplacePattern {
+
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> list = new ArrayList<>();
+        for (String word : words) {
+            if (samePattern(word, pattern)) {
+                list.add(word);
+            }
+        }
+        return list;
+    }
+
+    public boolean samePattern(String word, String pattern) {
+        Map<Character, Character> wordMap = new HashMap<>();
+        Map<Character, Character> patternMap = new HashMap<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            char w = word.charAt(i);
+            char p = pattern.charAt(i);
+            if (!wordMap.containsKey(w)) {
+                wordMap.put(w, p);
+            }
+            if (!patternMap.containsKey(p)) {
+                patternMap.put(p, w);
+            }
+            if (wordMap.get(w) != p || patternMap.get(p) != w) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public List<String> findAndReplacePattern(String[] words, String pattern) {
         List<String> result = new ArrayList<>();
 
