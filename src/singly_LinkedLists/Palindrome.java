@@ -9,6 +9,41 @@ My initial thought was to make a copy of the linked list and reverse to compare 
 public class Palindrome {
 
     public boolean isPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Using slow pointer to find the middle of the LinkedList
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // Reversing the middle of the LinkedList
+        ListNode rev = reverse(slow);
+        // Comparing first half of the LinkedList to reversed half
+        while (head != slow) {
+            if (head.val != rev.val) {
+                return false;
+            }
+            head = head.next;
+            rev = rev.next;
+        }
+        return true;
+    }
+    // Returns reversed LinkedList
+    public ListNode reverse(ListNode head) {
+        ListNode curr = head;
+        ListNode prev = null;
+
+        while (curr != null) {
+            curr = curr.next;
+            head.next = prev;
+            prev = head;
+            head = curr;
+        }
+        return prev;
+    }
+
+    public boolean isPalindrome(ListNode head) {
 
 
         ListNode new_copy = copy(head);
