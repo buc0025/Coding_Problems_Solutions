@@ -6,6 +6,30 @@ Find the sum of all left leaves in a given binary tree.
 
 public class SumLeftLeaves {
 
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int sum = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node.left != null) {
+                if (node.left.left == null && node.left.right == null) {
+                    sum += node.left.val;
+                }
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return sum;
+    }
+
     int sum = 0;
     public int sumOfLeftLeaves(TreeNode root) {
 
