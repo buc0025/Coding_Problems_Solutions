@@ -6,6 +6,37 @@ that their sum is equal to the given target.
  */
 
 public class FindTarget {
+
+    public boolean findTarget(TreeNode root, int k) {
+        if (root == null) {
+            return false;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        // BST cannot have duplicates so I'm using a set to hold all nodes
+        Set<Integer> set = new HashSet<>();
+
+        while (!queue.isEmpty()) {
+            TreeNode top = queue.poll();
+            // Populating set with all nodes
+            set.add(top.val);
+            if (top.left != null) {
+                queue.add(top.left);
+            }
+            if (top.right != null) {
+                queue.add(top.right);
+            }
+            // Checking to see if sum of 2 elements in BST is equal to
+            // target and making sure it's not counting itself twice
+            // e.g. (6 - 3 = 3)
+            if (set.contains(k - top.val) && k - top.val != top.val) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean findTarget(TreeNode root, int k) {
         // Creating a list with all the nodes
         List<Integer> nodes = new ArrayList<>();
