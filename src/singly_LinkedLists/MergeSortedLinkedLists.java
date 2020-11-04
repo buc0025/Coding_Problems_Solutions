@@ -5,6 +5,46 @@ Merge two sorted linked lists and return it as a new sorted list. The new list s
  */
 
 public class MergeSortedLinkedLists {
+//********************Incorrect Solution**************************
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode head = null;
+        if (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                head = l1;
+            } else {
+                head = l2;
+            }
+        }
+        return mergedLists(l1, l2, head);
+    }
+
+    public ListNode mergedLists(ListNode l1, ListNode l2, ListNode head) {
+        ListNode current = head;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                current.next = l1.next;
+                l1 = l1.next;
+                current = l1;
+            } else {
+                current.next = l2.next;
+                l2 = l2.next;
+                current = l2;
+            }
+        }
+        while (l1 != null) {
+            current.next = l1.next;
+            l1 = l1.next;
+            current = l1;
+        }
+        while (l2 != null) {
+            current.next = l2.next;
+            l2 = l2.next;
+            current = l2;
+        }
+        return head;
+    }
+
+
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode newHead = null;
         ListNode current = null;
