@@ -12,6 +12,37 @@ You can return any of them.
 public class InsertBST {
 
     public TreeNode insertIntoBST(TreeNode root, int val) {
+        TreeNode node = new TreeNode(val);
+
+        if (root == null) {
+            return node;
+        }
+        // Insert node into  tree when current val is no longer greater than given val
+        if (root.val < val) {
+            if (root.right != null) {
+                insertIntoBST(root.right, val);
+            }else {
+                // Current node's right subtree will become new node's right subtree
+                TreeNode replace = root.right;
+                root.right = node;
+                node.right = replace;
+            }
+        }
+        // Insert node into  tree when current val is no longer less than given val
+        if (root.val > val) {
+            if (root.left != null) {
+                insertIntoBST(root.left, val);
+            }else {
+                // Current node's left subtree will become new node's left subtree
+                TreeNode replace = root.left;
+                root.left = node;
+                node.left = replace;
+            }
+        }
+        return root;
+    }
+
+    public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) {
             return new TreeNode(val);
         }
