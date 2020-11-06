@@ -7,6 +7,24 @@ also be considered as a subtree of itself.
  */
 
 public class SameSubtree {
+//*********Incorrect Solution, couldn't figure out how to check remaining subtree of s if t is part of s subtree*******
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (s == null || t == null) {
+            return s == t;
+        }
+        return helper(s.left, t) || helper(s.right, t);
+    }
+
+    public boolean helper(TreeNode s, TreeNode t) {
+        if (s == null || t == null) {
+            return s == t;
+        }
+        if (s.val != t.val) {
+            return false;
+        }
+        return helper(s.left, t.left) || helper(s.right, t.right);
+    }
+
 
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if (s == null || t == null) {
