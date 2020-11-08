@@ -10,6 +10,61 @@ pop() -- Removes the element on top of the stack.
 top() -- Get the top element.
 empty() -- Return whether the stack is empty.
  */
+
+class MyStack {
+    Queue<Integer> front;
+    Queue<Integer> end;
+
+    public MyStack() {
+        front = new LinkedList<>();
+        end = new LinkedList<>();
+    }
+
+    // end queue should have no more than 1 element at all times
+    public void push(int x) {
+        if (end.isEmpty()) {
+            end.add(x);
+        } else {
+            while (!end.isEmpty()) {
+                int n = end.poll();
+                front.add(n);
+            }
+            end.add(x);
+        }
+    }
+
+    // Populate end queue with front queue's elements and offers them back to front
+    // until there's 1 element left in end and returns that element
+    public int pop() {
+        if (end.isEmpty()) {
+            while (!front.isEmpty()) {
+                end.add(front.poll());
+            }
+            while (end.size() > 1) {
+                front.add(end.poll());
+            }
+        }
+        return end.poll();
+    }
+
+    // Same concept as pop but uses peek instead
+    public int top() {
+        if (end.isEmpty()) {
+            while (!front.isEmpty()) {
+                end.add(front.poll());
+            }
+            while (end.size() > 1) {
+                front.add(end.poll());
+            }
+        }
+        return end.peek();
+    }
+
+    public boolean empty() {
+        return front.isEmpty() && end.isEmpty();
+    }
+}
+
 public class ImplementStack {
     Queue<Integer> stack;
     Queue<Integer> queue;
