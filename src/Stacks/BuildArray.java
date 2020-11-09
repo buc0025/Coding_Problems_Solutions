@@ -18,6 +18,35 @@ You are guaranteed that the answer is unique.
  */
 
 public class BuildArray {
+
+    public List<String> buildArray(int[] target, int n) {
+        // Target array will become a set to be used to compare elements from new array later on
+        Set<Integer> set = new HashSet<>();
+        for (int t : target) {
+            set.add(t);
+        }
+
+        // Creating array that contains elements 1 to the last element of target array
+        int[] arr = new int[target[target.length-1]];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
+        }
+
+        List<String> list = new ArrayList<>();
+        // Populating list with "Push" for elements that match up in new array and given array
+        // while populating list with "Push, Pop" if target array is missing elements from new array
+        for (int a : arr) {
+            if (set.contains(a)) {
+                list.add("Push");
+            } else {
+                list.add("Push");
+                list.add("Pop");
+            }
+        }
+        return list;
+    }
+
     public List<String> buildArray(int[] target, int n) {
         List<String> list = new ArrayList<>();
         List<Integer> nums = new ArrayList<>();
