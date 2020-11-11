@@ -7,6 +7,47 @@ Return true if and only if the two given trees with head nodes root1 and root2 a
  */
 
 public class LeafSimilarTrees {
+
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        // Lists only return leaves
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+
+        list1 = isLeaf(root1, list1);
+        list2 = isLeaf(root2, list2);
+
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+
+        int index = 0;
+
+        // Comparing leaves of both trees
+        for (int l : list1) {
+            if (list2.get(index) != l) {
+                return false;
+            }
+            index++;
+        }
+
+        return true;
+    }
+
+    public List<Integer> isLeaf(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return list;
+        }
+
+        if (root.left == null && root.right == null) {
+            list.add(root.val);
+        }
+
+        isLeaf(root.left, list);
+        isLeaf(root.right, list);
+
+        return list;
+    }
+
     //*********More efficient solution*************
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
         // Creating a list for the leaves of both trees to compare in return statement;
