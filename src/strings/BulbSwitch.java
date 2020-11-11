@@ -14,6 +14,28 @@ Return the minimum number of flips required to form target.
  */
 
 public class BulbSwitch {
+
+    public int minFlips(String target) {
+        // Count will always be at least 1 if target contains a "1"
+        int count = 1;
+        int start = target.indexOf('1');
+
+        // No changes if target doesn't contain "1"
+        if (start < 0) {
+            return 0;
+        }
+
+        // Any time a cluster is broken up, count will be incremented
+        // Start point is at the index of the first "1" because that's the first change
+        for (int i = start; i < target.length()-1; i++) {
+            if (target.charAt(i + 1) != target.charAt(i)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public int minFlips(String target) {
         int count = 0;
 
