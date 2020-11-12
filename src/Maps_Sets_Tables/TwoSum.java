@@ -9,6 +9,33 @@ You may assume that each input would have exactly one solution, and you may not 
 
 public class TwoSum {
 
+********Incorrect mock interview problem that passes 76/80 test cases********
+    public int[] twoSum(int[] nums, int target) {
+        int index1 = -1;
+        int index2 = -1;
+        int diff = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        //Populates map keys with indices and values with elements in array
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsValue(target - nums[i])) {
+                diff = target - nums[i];
+                index1 = i;
+                map.put(i, nums[i]);
+                break;
+            }
+            map.put(i, nums[i]);
+        }
+
+        for (int m : map.keySet()) {
+            if (map.get(m) == diff && m != index1) {
+                index2 = m;
+            }
+        }
+
+        return new int[] {index1, index2};
+    }
+
     public int[] twoSum1(int[] nums, int target) {
 
         Map<Integer, Integer> map = new HashMap<>();
