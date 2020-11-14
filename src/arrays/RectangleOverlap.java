@@ -13,6 +13,33 @@ Given two axis-aligned rectangles rec1 and rec2, return true if they overlap, ot
 
 public class RectangleOverlap {
 
+    public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
+        // The idea is to focus on the sides of one rectangle instead of the area inside
+        // Checks the right and left side of rectangle 1
+        if (rec1[2] <= rec2[0] || rec1[0] >= rec2[2]) {
+            return false;
+        }
+        // Checks the top and bottom of rectangle 1
+        if (rec1[3] <= rec2[1] || rec1[1] >= rec2[3]) {
+            return false;
+        }
+
+        return isNotALine(rec1, rec2);
+    }
+
+    // Some test cases use lines instead of rectangles
+    public boolean isNotALine(int[] rec1, int[] rec2) {
+        if (rec1[0] == rec1[2] || rec1[1] == rec1[3]) {
+            return false;
+        }
+
+        if (rec2[0] == rec2[2] || rec2[1] == rec2[3]) {
+            return false;
+        }
+
+        return true;
+    }
+
     *****Incorrect attempt at random mock interview*******
 
     public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
