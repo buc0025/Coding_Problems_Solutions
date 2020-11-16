@@ -11,6 +11,45 @@ Return the number of teams you can form given the conditions. (soldiers can be p
  */
 
 public class NumberOfTeams {
+
+    public int numTeams(int[] rating) {
+        int count = 0;
+
+        // Starting with the middle index of the possible 3 numbers instead of the start
+        for (int j = 1; j < rating.length-1; j++) {
+
+            // Variables reset back to 0 after each iteration
+            int leftSmall = 0; // Checks if the left side of middle index is smaller.
+            int rightBig = 0;  // Checks if the right side of middle index is bigger.
+            int leftBig = 0;   // Checks if the left side of middle index is bigger.
+            int rightSmall = 0;  // Checks if the right side of middle index is smaller.
+
+            // Checking the left side of the middle index
+            for (int i = 0; i < j; i++) {
+                if (rating[i] < rating[j]) {
+                    leftSmall++;
+                }
+                if (rating[i] > rating[j]) {
+                    leftBig++;
+                }
+            }
+
+            // Checking the right side of the middle index
+            for (int k = j + 1; k < rating.length; k++) {
+                if (rating[k] > rating[j]) {
+                    rightBig++;
+                }
+                if (rating[k] < rating[j]) {
+                    rightSmall++;
+                }
+            }
+            // Adds possible combinations for increasing and decreasing order
+            count += leftSmall * rightBig + leftBig * rightSmall;
+        }
+
+        return count;
+    }
+
     public int numTeams(int[] rating) {
         int count = 0;
 
