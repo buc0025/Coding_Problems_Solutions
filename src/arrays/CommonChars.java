@@ -9,6 +9,41 @@ You may return the answer in any order.
  */
 
 public class CommonChars {
+
+    /*Realized why it was an incorrect attempt after not passing certain test cases. Idea was to see  if the number of
+    occurrences of a character is greater than the length of the array. I assumed that character would be added to my
+    list because it shows up in each string at least once. I realized this wouldn't work if a string didn't contain a
+    certain character while another contained multiple occurrences of that number eg ("aaa" "bbb" "ccc")
+     */
+    public List<String> commonChars(String[] A) {
+        List<String> list = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+
+        // Assigning every substring as a key and the number of occurrence as value
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[i].length(); j++) {
+                if (map.containsKey(A[i].substring(j, j+1))) {
+                    map.put(A[i].substring(j, j+1), map.get(A[i].substring(j, j+1))+1);
+                } else {
+                    map.put(A[i].substring(j, j+1), 1);
+                }
+            }
+        }
+
+        // If the number of occurrence is more than length of array then it must appear
+        // in every string
+        for (String m : map.keySet()) {
+            if (map.get(m) / A.length > 0) {
+                for (int i = 0; i < map.get(m) / A.length; i++) {
+                    list.add(m);
+                }
+            }
+        }
+
+        return list;
+    }
+
+
 ****** Incorrect Attempt at random mock interview question*******
     public List<String> commonChars(String[] A) {
         List<String> list = new ArrayList<>();
