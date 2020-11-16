@@ -5,6 +5,52 @@ Given two non-negative integers num1 and num2 represented as string, return the 
  */
 
 public class AddStrings {
+
+    public String addStrings(String num1, String num2) {
+        int num1Len = num1.length() - 1;
+        int num2Len = num2.length() - 1;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int sum = 0;
+        int carry = 0;
+
+        // Adding the strings from the end to the front
+        while (num1Len >= 0 || num2Len >= 0) {
+            if (num1Len >= 0 && num2Len >= 0) {
+                sum = (num1.charAt(num1Len) - '0') + (num2.charAt(num2Len) - '0') + carry;
+            }
+
+            if (num1Len >= 0 && num2Len < 0) {
+                sum = (num1.charAt(num1Len) - '0') + carry;
+            }
+
+            if (num2Len >= 0 && num1Len < 0) {
+                sum = (num2.charAt(num2Len) - '0') + carry;
+            }
+
+            // If the sum of the end numbers is greater than 10, then 1 gets added to the next
+            // sum of the numbers to the left.
+            if (sum > 9) {
+                stringBuilder.append(sum - 10);
+                carry = 1;
+            }
+            else {
+                stringBuilder.append(sum);
+                carry = 0;
+            }
+            num1Len--;
+            num2Len--;
+        }
+
+        // If the sum of the last 2 numbers is more than 10 then 1 gets appended to string
+        if (carry > 0) {
+            stringBuilder.append(1);
+        }
+
+        return stringBuilder.reverse().toString();
+    }
+
+
     *******Solution only works for numbers smaller than Integer.MAX_VALUE**********
     public String addStrings(String num1, String num2) {
         int number = convertToInteger(num1) + convertToInteger(num2);
