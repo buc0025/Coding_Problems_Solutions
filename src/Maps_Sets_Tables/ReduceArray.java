@@ -6,6 +6,47 @@ Return the minimum size of the set so that at least half of the integers of the 
  */
 
 public class ReduceArray {
+
+    public int minSetSize(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // Keys are the elements in array and number of occurrences are values
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(arr[i])) {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            } else {
+                map.put(arr[i], 1);
+            }
+        }
+
+        // Creating an array that only holds the values
+        int[] nums = new int[map.size()];
+
+        int index = 0;
+
+        for (int m : map.values()) {
+            nums[index] = m;
+            index++;
+        }
+
+        Arrays.sort(nums);
+
+        int count = 0;
+        int halfLength = 0;
+
+        // Biggest number of occurrences will be at the end of the array so we're going to add
+        // those elements first to get to at least half the given array length to find the minimum
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (halfLength >= arr.length / 2) {
+                break;
+            }
+            halfLength += nums[i];
+            count++;
+        }
+
+        return count;
+    }
+
     public int minSetSize(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
         // Assigning elements in array as keys and occurrences as values
