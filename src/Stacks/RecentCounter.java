@@ -16,6 +16,28 @@ It is guaranteed that every call to ping uses a strictly larger value of t than 
 
 public class RecentCounter {
 
+    // Question took a while to understand and runtime is TERRIBLE
+    class RecentCounter {
+        List<Integer> list;
+
+        public RecentCounter() {
+            list = new ArrayList<>();
+        }
+
+        public int ping(int t) {
+            list.add(t);
+            int startRange = t - 3000;
+            int inRange = 0;
+
+            for (int l : list) {
+                if (l >= startRange) {
+                    inRange++;
+                }
+            }
+            return inRange;
+        }
+    }
+
     Queue<Integer> queue;
     public RecentCounter() {
         queue = new LinkedList<>();
