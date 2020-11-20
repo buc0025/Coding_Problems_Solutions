@@ -12,6 +12,24 @@ It is guaranteed that the insertion operations will be valid.
  */
 
 public class TargetArray {
+
+    // While this seems like a pretty easy problem, it took me a long time to figure out because I didn't know/ forgot
+    // I can add elements to a list at a specific index and have it move all the elements to the right as well
+    public int[] createTargetArray(int[] nums, int[] index) {
+        int[] arr = new int[nums.length];
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            list.add(index[i], nums[i]);
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = list.get(i);
+        }
+
+        return arr;
+    }
+
     public int[] createTargetArray(int[] nums, int[] index) {
         Stack<Integer> stack = new Stack<>();
 

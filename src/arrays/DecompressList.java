@@ -8,6 +8,28 @@ generate the decompressed list. Return the decompressed list.
 */
 
 public class DecompressList {
+
+    public int[] decompressRLElist(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+
+        // Concatenating all the sublists from left to right into list
+        for (int i = 0; i < nums.length; i+=2) {
+            while (nums[i] > 0) {
+                list.add(nums[i + 1]);
+                nums[i] -= 1;
+            }
+        }
+
+        int[] arr = new int[list.size()];
+
+        // Populating array with list elements
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = list.get(i);
+        }
+
+        return arr;
+    }
+
     public int[] decompressRLElist(int[] nums) {
         int size = 0;
 
