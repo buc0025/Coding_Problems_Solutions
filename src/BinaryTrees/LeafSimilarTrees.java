@@ -9,6 +9,29 @@ Return true if and only if the two given trees with head nodes root1 and root2 a
 public class LeafSimilarTrees {
 
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        List<Integer> leaves1 = new ArrayList<>();
+        List<Integer> leaves2 = new ArrayList<>();
+
+        return getLeaves(root1, leaves1).equals(getLeaves(root2, leaves2));
+    }
+
+    public List<Integer> getLeaves(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.left == null && root.right == null) {
+            list.add(root.val);
+        }
+
+        getLeaves(root.left, list);
+        getLeaves(root.right, list);
+
+        return list;
+    }
+
+
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
         // Lists only return leaves
         List<Integer> list1 = new ArrayList<>();
         List<Integer> list2 = new ArrayList<>();

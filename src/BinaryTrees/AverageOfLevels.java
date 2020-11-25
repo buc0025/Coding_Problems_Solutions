@@ -5,6 +5,46 @@ Given a non-empty binary tree, return the average value of the nodes on each lev
  */
 
 public class AverageOfLevels {
+
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null); // The first null will let me know I've reach the end of the level
+
+        long sum = 0;
+        int num = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode top = queue.poll();
+
+            if (top != null) {
+                if (top.left != null) {
+                    queue.add(top.left);
+                }
+                if (top.right != null) {
+                    queue.add(top.right);
+                }
+
+                sum += top.val;
+                num++;
+                // null will let me know when I reached the end of a level and add the average to list
+                if (queue.peek() == null) {
+                    queue.add(null);
+                    list.add((double) sum / num);
+                    sum = 0;
+                    num = 0;
+                }
+            }
+            // Two nulls in a row means there are no more nodes left
+            if (top == null && queue.peek() == null) {
+                break;
+            }
+        }
+
+        return list;
+    }
+
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> list = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
