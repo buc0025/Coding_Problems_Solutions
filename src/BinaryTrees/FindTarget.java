@@ -8,6 +8,32 @@ that their sum is equal to the given target.
 public class FindTarget {
 
     public boolean findTarget(TreeNode root, int k) {
+        List<Integer> list = new ArrayList<>();
+        list = helper(root, list);
+
+        for (int l : list) {
+            // This logic helps with cases like [1,2,3] and k = 6
+            if (list.contains(k - l) && l != k - l) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public List<Integer> helper(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return null;
+        }
+
+        helper(root.left, list);
+        list.add(root.val);
+        helper(root.right, list);
+
+        return list;
+    }
+
+    public boolean findTarget(TreeNode root, int k) {
         if (root == null) {
             return false;
         }
