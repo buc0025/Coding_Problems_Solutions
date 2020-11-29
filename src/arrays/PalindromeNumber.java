@@ -7,6 +7,35 @@ Follow up: Could you solve it without converting the integer to a string?
  */
 
 public class PalindromeNumber {
+
+    public boolean isPalindrome(int x) {
+        if (x >= 0 && x < 10) {
+            return true;
+        }
+        if (x < 0 || x % 10 == 0) {
+            return false;
+        }
+
+        int base = -1;
+        int temp = x;
+        long num = 0; // Checks if reverse of x is greater than Integer.MAX_VALUE
+        int temp2 = x;
+
+        while (temp > 0) {
+            base++;
+            temp /= 10;
+        }
+
+        // Forming new number from starting from the end of x
+        while (temp2 > 0) {
+            num += Math.pow(10, base) * (temp2 % 10);
+            temp2 /= 10;
+            base--;
+        }
+
+        return num == x;
+    }
+
 ******Point of problem is to solve without converting integer to string*******
     public boolean isPalindrome(int x) {
         if (x < 0) {

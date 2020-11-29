@@ -7,6 +7,60 @@ Given two non-negative integers num1 and num2 represented as string, return the 
 public class AddStrings {
 
     public String addStrings(String num1, String num2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int num1Len = num1.length() -1;
+        int num2Len = num2.length() - 1;
+        int carry = 0;
+        int sum = 0;
+
+        // Adding the end element of both strings
+        while (num1Len >= 0 && num2Len >= 0) {
+            sum = (num1.charAt(num1Len) - '0') + (num2.charAt(num2Len)- '0') + carry;
+            if (sum > 9) {
+                carry = 1;
+                sum -= 10;
+            } else {
+                carry = 0;
+            }
+            num1Len--;
+            num2Len--;
+            stringBuilder.append(sum);
+        }
+
+        // Append the rest of num1
+        while (num1Len >= 0) {
+            sum = (num1.charAt(num1Len) - '0') + carry;
+            if (sum > 9) {
+                carry = 1;
+                sum -= 10;
+            } else {
+                carry = 0;
+            }
+            num1Len--;
+            stringBuilder.append(sum);
+        }
+
+        // Append the rest of num2
+        while (num2Len >= 0) {
+            sum = (num2.charAt(num2Len) - '0') + carry;
+            if (sum > 9) {
+                carry = 1;
+                sum -= 10;
+            } else {
+                carry = 0;
+            }
+            num2Len--;
+            stringBuilder.append(sum);
+        }
+
+        if (carry > 0) {
+            stringBuilder.append(1);
+        }
+
+        return stringBuilder.reverse().toString();
+    }
+
+    public String addStrings(String num1, String num2) {
         int num1Len = num1.length() - 1;
         int num2Len = num2.length() - 1;
         StringBuilder stringBuilder = new StringBuilder();
