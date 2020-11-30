@@ -4,6 +4,53 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 Write a program to find the node at which the intersection of two singly linked lists begins.
  */
 public class IntersectionTwoLinkedLists {
+    
+    // Incorrect attempt. Idea was to get the length of both lists and make them the same length so they'll intersect at the
+    // same time if they do intersect.
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int aLen = 0;
+        int bLen = 0;
+
+        ListNode currA = headA;
+        ListNode currB = headB;
+
+        while (currA != null) {
+            aLen++;
+            currA = currA.next;
+        }
+
+        while (currB != null) {
+            bLen++;
+            currB = currB.next;
+        }
+
+        if (aLen > bLen) {
+            aLen = aLen - bLen;
+            while (aLen > 0) {
+                headA = headA.next;
+                aLen--;
+            }
+        }
+
+        if (aLen < bLen) {
+            bLen = bLen - aLen;
+            while (bLen > 0) {
+                headB = headB.next;
+                bLen--;
+            }
+        }
+
+        while (headA != null && headB != null) {
+            if (headA == headB) {
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return null;
+    }
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         Set<ListNode> set = new HashSet<>();
 
