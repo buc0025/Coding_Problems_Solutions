@@ -7,6 +7,27 @@ Remove all elements from a linked list of integers that have value val.
 
 public class RemoveElements {
 
+    // Incorrect attempt. Solution doesn't work for lists with only given values.
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode current = head;
+
+        // Idea was to check the front first before going to second while loop to check for values within list
+        while (current.val == val) {
+            head = head.next;
+            current = current.next;
+        }
+
+        while (current != null && current.next != null) {
+            if (current.next.val == val) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+
     public ListNode removeElements(ListNode head, int val) {
         ListNode current = head;
 

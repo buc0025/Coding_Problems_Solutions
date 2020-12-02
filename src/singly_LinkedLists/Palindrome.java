@@ -8,6 +8,36 @@ My initial thought was to make a copy of the linked list and reverse to compare 
 
 public class Palindrome {
 
+    // Incorrect attempt. Not sure why this doesn't work since I'm comparing the reverse with the original
+    // Works correctly for 1->2->3->3 but not 1->2->1->1
+    public boolean isPalindrome(ListNode head) {
+        ListNode reverse = reverse(head);
+
+        while (head != null && reverse != null) {
+            if (head.val != reverse.val) {
+                return false;
+            }
+            head = head.next;
+            reverse = reverse.next;
+        }
+
+        return true;
+    }
+
+    public ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+
+        while (current != null) {
+            current = current.next;
+            head.next = prev;
+            prev = head;
+            head = current;
+        }
+
+        return prev;
+    }
+
     public boolean isPalindrome(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;

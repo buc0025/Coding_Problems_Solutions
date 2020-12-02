@@ -18,6 +18,37 @@ public class WordPattern {
             return false;
         }
 
+        Map<Character, String> map = new HashMap<>();
+        Map<String, Character> map1 = new HashMap<>();
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            String string = arr[i];
+            if (map.containsKey(c)) {
+                if (!map.get(c).equals(string)) {
+                    return false;
+                }
+            }
+            else if (map1.containsKey(string)) {
+                if (!map1.get(string).equals(c)) {
+                    return false;
+                }
+            } else {
+                map.put(c, string);
+                map1.put(string, c);
+            }
+        }
+
+        return true;
+    }
+
+    public boolean wordPattern(String pattern, String s) {
+        String[] arr = s.split(" ");
+
+        if (pattern.length() != arr.length) {
+            return false;
+        }
+
         Map<Character, String> sMap = new HashMap<>();
         Map<String, Character> patternMap = new HashMap<>();
 
