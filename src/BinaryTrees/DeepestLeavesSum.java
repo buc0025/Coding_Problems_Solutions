@@ -5,6 +5,54 @@ Given a binary tree, return the sum of values of its deepest leaves.
  */
 
 public class DeepestLeavesSum {
+
+    public int deepestLeavesSum(TreeNode root) {
+        int maxLevel = maxLevel(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        int sum = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode top = queue.poll();
+            if (top != null) {
+                if (top.left != null) {
+                    queue.add(top.left);
+                }
+                if (top.right != null) {
+                    queue.add(top.right);
+                }
+            }
+            // Only add the values at the last level
+            if (maxLevel == 1) {
+                if (top != null) {
+                    sum += top.val;
+                }
+            }
+
+            // Keeps track of each level
+            if (queue.peek() == null) {
+                queue.add(null);
+                maxLevel--;
+            }
+
+            if (top == null && queue.peek() == null) {
+                break;
+            }
+        }
+        return sum;
+    }
+
+    public int maxLevel(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftMax = maxLevel(root.left) + 1;
+        int rightMax = maxLevel(root.right) + 1;
+
+        return Math.max(leftMax, rightMax);
+    }
+
     public int deepestLeavesSum(TreeNode root) {
         if (root == null) {
             return 0;
