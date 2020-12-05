@@ -11,6 +11,27 @@ Given an integer n, the length of the array. Return the minimum number of operat
  */
 
 public class MinOperations {
+
+    public int minOperations(int n) {
+        int[] arr = new int[n];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (2 * i) + 1;
+        }
+
+        int left = 0;
+        int right = arr.length - 1;
+        int count = 0;
+
+        while (left < right) {
+            count += arr[right] - n;
+            left++;
+            right--;
+        }
+
+        return count;
+    }
+
     public int minOperations(int n) {
         int sum = 0;
 

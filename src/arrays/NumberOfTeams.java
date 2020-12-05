@@ -12,6 +12,41 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 
 public class NumberOfTeams {
 
+    // Idea is to compare the left elements and right elements with the index you're on and multiple both sides if they fit the
+    // criteria of (rating[i] < rating[j] < rating[k]) or (rating[i] > rating[j] > rating[k]) where (0 <= i < j < k < n).
+    public int numTeams(int[] rating) {
+        int sum = 0;
+
+        for (int i = 1; i < rating.length - 1; i++) {
+            int left = 0;
+            int right = 0;
+            int left1 = 0;
+            int right1 = 0;
+
+            for (int j = 0; j < rating.length; j++) {
+                // Checks for ascending order
+                if (j < i && rating[j] < rating[i]) {
+                    left++;
+                }
+                // Checks for ascending order
+                if (j > i && rating[j] > rating[i]) {
+                    right++;
+                }
+                // Checks for descending order
+                if (j < i && rating[j] > rating[i]) {
+                    left1++;
+                }
+                // Checks for descending order
+                if (j > i && rating[j] < rating[i]) {
+                    right1++;
+                }
+            }
+            sum += (left * right) + (left1 * right1);
+        }
+
+        return sum;
+    }
+
     public int numTeams(int[] rating) {
         int count = 0;
 

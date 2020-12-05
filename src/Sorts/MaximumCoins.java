@@ -14,6 +14,20 @@ Return the maximum number of coins which you can have.
  */
 
 public class MaximumCoins {
+
+    public int maxCoins(int[] piles) {
+        int sum = 0;
+        int numberOfPiles = piles.length / 3; // Arrange the array so that the third person only gets the elements in the front
+
+        Arrays.sort(piles);
+
+        for (int i = piles.length - 2; i >= numberOfPiles; i-=2) {
+            sum += piles[i];
+        }
+
+        return sum;
+    }
+
     //**************Uses built-in sort for arrays*******
     public int maxCoins(int[] piles) {
         int num = piles.length / 3;     //divides coin piles by number of people (3)
