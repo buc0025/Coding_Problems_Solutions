@@ -7,6 +7,52 @@ Return a list containing all the integers from both trees sorted in ascending or
  */
 
 public class AllElementsBSTs {
+
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+
+        inOrder(root1, list1);
+        inOrder(root2, list2);
+
+        return combineLists(list1, list2);
+    }
+
+    public void inOrder(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+    }
+
+    public List<Integer> combineLists(List<Integer> list1, List<Integer> list2) {
+        int[] arr = new int[list1.size() + list2.size()];
+        int index = 0;
+
+        // Add list1 to array first and then list2
+        for (int i = 0; i < arr.length; i++) {
+            if (i >= list1.size()) {
+                arr[i] = list2.get(index);
+                index++;
+            } else {
+                arr[i] = list1.get(i);
+            }
+        }
+
+        Arrays.sort(arr);
+
+        List<Integer> combined = new ArrayList<>();
+
+        for (int a : arr) {
+            combined.add(a);
+        }
+
+        return combined;
+    }
+
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
         List<Integer> list1 = new ArrayList<>();
         List<Integer> list2 = new ArrayList<>();
