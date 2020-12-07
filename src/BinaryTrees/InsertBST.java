@@ -12,6 +12,36 @@ You can return any of them.
 public class InsertBST {
 
     public TreeNode insertIntoBST(TreeNode root, int val) {
+        List<Integer> list = new ArrayList<>();
+        inOrder(root, list);
+        list.add(val);
+
+        Collections.sort(list);
+
+        TreeNode ans = new TreeNode(0);
+        TreeNode cur = ans;
+
+        // New tree's leftmost node is now the root of the tree and every node has no left child
+        // and only one right child
+        for (int l : list) {
+            cur.right = new TreeNode(l);
+            cur = cur.right;
+        }
+
+        return ans.right;
+    }
+
+    public void inOrder(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+    }
+
+    public TreeNode insertIntoBST(TreeNode root, int val) {
         TreeNode node = new TreeNode(val);
 
         if (root == null) {
