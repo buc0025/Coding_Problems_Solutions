@@ -7,6 +7,25 @@ An Anagram of a string is a string that contains the same characters with a diff
  */
 
 public class MinStepsStringAnagram {
+
+    public int minSteps(String s, String t) {
+        int[] arr = new int[26];
+        int count = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            ++arr[s.charAt(i) - 'a'];
+            --arr[t.charAt(i) - 'a'];
+        }
+
+        for (int a : arr) {
+            if (a > 0) {
+                count += a;
+            }
+        }
+
+        return count;
+    }
+
     public int minSteps(String s, String t) {
         int[] arr = new int[26]; // constraint said String s and t contain only lower-case letters
 

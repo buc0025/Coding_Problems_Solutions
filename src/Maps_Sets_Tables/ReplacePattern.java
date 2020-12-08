@@ -12,6 +12,44 @@ public class ReplacePattern {
 
     public List<String> findAndReplacePattern(String[] words, String pattern) {
         List<String> list = new ArrayList<>();
+
+        for (String word : words) {
+            if (match(word, pattern)) {
+                list.add(word);
+            }
+        }
+
+        return list;
+    }
+
+    public boolean match(String word, String pattern) {
+        // Assigns elements of word as values to key elements in pattern
+        Map<Character, Character> pat = new HashMap<>();
+        // Assigns elements of pattern as values to key elements in word
+        Map<Character, Character> words = new HashMap<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            if (pat.containsKey(pattern.charAt(i))) {
+                // Crisscross examination
+                if (word.charAt(i) != pat.get(pattern.charAt(i))) {
+                    return false;
+                }
+            }
+
+            if (words.containsKey(word.charAt(i))) {
+                // Crisscross examination
+                if (pattern.charAt(i) != words.get(word.charAt(i))) {
+                    return false;
+                }
+            }
+            pat.put(pattern.charAt(i), word.charAt(i));
+            words.put(word.charAt(i), pattern.charAt(i));
+        }
+        return true;
+    }
+
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> list = new ArrayList<>();
         for (String word : words) {
             if (samePattern(word, pattern)) {
                 list.add(word);

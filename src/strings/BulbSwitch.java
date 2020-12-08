@@ -16,6 +16,21 @@ Return the minimum number of flips required to form target.
 public class BulbSwitch {
 
     public int minFlips(String target) {
+        int count = 0;
+        char flip = '0';
+
+        for (int i = 0; i < target.length(); i++) {
+            if (target.charAt(i) != flip) {
+                count++;
+            }
+            // changes the current status of the switch that will in turn help compare and count the next switch
+            flip = count % 2 == 1 ? '1' : '0';
+        }
+
+        return count;
+    }
+
+    public int minFlips(String target) {
         // Count will always be at least 1 if target contains a "1"
         int count = 1;
         int start = target.indexOf('1');
