@@ -10,6 +10,39 @@ public class ReduceArray {
     public int minSetSize(int[] arr) {
         Map<Integer, Integer> map = new HashMap<>();
 
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        // New array will hold number of occurrences
+        int[] nums = new int[map.size()];
+        int index = 0;
+
+        for (int i : map.values()) {
+            nums[index] = i;
+            index++;
+        }
+
+        Arrays.sort(nums);
+
+        int count = 0;
+        int len = arr.length;
+
+        // Largest elements will be at end of sorted array, so start at the end
+        for (int i = nums.length - 1; i >= 0; i--) {
+            len -= nums[i];
+            count++;
+            if (len <= arr.length / 2) {
+                break;
+            }
+        }
+
+        return count;
+    }
+
+    public int minSetSize(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+
         // Keys are the elements in array and number of occurrences are values
         for (int i = 0; i < arr.length; i++) {
             if (map.containsKey(arr[i])) {
