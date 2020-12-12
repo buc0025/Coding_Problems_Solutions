@@ -7,6 +7,22 @@ value equals the given value. Return the subtree rooted with that node. If such 
 
 public class SearchTree {
 
+    public TreeNode searchBST(TreeNode root, int val) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.val < val) {
+            return searchBST(root.right, val);
+        }
+
+        if (root.val > val) {
+            return searchBST(root.left, val);
+        }
+
+        return root;
+    }
+
     // Such an easy recursive answer, but I just couldn't come up with it. I resorted to DFS, but I really need to work
     // on using recursion for this problem.
     public TreeNode searchBST(TreeNode root, int val) {

@@ -6,6 +6,33 @@ tree, and every node has no left child and only 1 right child.
  */
 
 public class IncreasingOrderBST {
+
+    public TreeNode increasingBST(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        inOrder(root, list);
+
+        TreeNode node = new TreeNode(0);
+        TreeNode top = node;
+
+        while (!list.isEmpty()) {
+            top.right = new TreeNode(list.get(0));
+            top = top.right;
+            list.remove(0);
+        }
+
+        return node.right;
+    }
+
+    public void inOrder(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+    }
+
     // Incorrect attempt. The logic inside the while loop failed because it only reassigns the root's immediate right
     // child and not the one after
     public TreeNode increasingBST(TreeNode root) {
