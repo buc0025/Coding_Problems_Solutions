@@ -9,6 +9,26 @@ students remain on their seats.
 
 public class HeightChecker {
 
+    // Resorted to using built-in sort because I couldn't think of a more optimized solution that uses O(n)
+    public int heightChecker(int[] heights) {
+        int[] clone = new int[heights.length];
+
+        for (int i = 0; i < clone.length; i++) {
+            clone[i] = heights[i];
+        }
+
+        Arrays.sort(clone);
+        int count = 0;
+
+        for (int i = 0; i < clone.length; i++) {
+            if (clone[i] != heights[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     //Incorrect attempt to a previous problem that was never committed
 
     public int heightChecker(int[] heights) {
