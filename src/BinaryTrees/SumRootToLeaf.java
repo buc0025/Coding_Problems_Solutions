@@ -10,6 +10,27 @@ Return the sum of these numbers. The answer is guaranteed to fit in a 32-bits in
 
 public class SumRootToLeaf {
 
+    // Incorrect attempt. Learned that I can turn strings into binary numbers using Integer.parseInt(string value, 2)
+    int sum = 0;
+    public int sumRootToLeaf(TreeNode root) {
+        helper(root, "");
+
+        return sum;
+    }
+
+    public void helper(TreeNode root, String string) {
+        if (root == null) {
+            return;
+        }
+
+        if (root.left == null && root.right == null) {
+            sum += Integer.parseInt(string + root.val, 2);
+        }
+
+        helper(root.left, string);
+        helper(root.right, string);
+    }
+
     // Incorrect attempt. I honestly didn't know how to go about this without turning the root to leaf into a String. If the
     // root to leaf was [1,0,0], I couldn't think of a way keep it as an int because of I added it it would've been 1.
     public int sumRootToLeaf(TreeNode root) {
