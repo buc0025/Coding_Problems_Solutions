@@ -8,6 +8,26 @@ root of the trimmed binary search tree.
 
 public class TrimBST {
 
+    // Incorrect attempt because I'm not returning when comparing root.val with low and high
+    public TreeNode trimBST(TreeNode root, int low, int high) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.left != null && root.left.val < low) {
+            root.left = trimBST(root.right, low, high);
+        }
+
+        if (root.right != null && root.right.val > high) {
+            root.right = trimBST(root.left, low, high);
+        }
+
+        trimBST(root.left, low, high);
+        trimBST(root.right, low, high);
+
+        return root;
+    }
+
     // Incorrect attempt. Super frustrating because this I got this problem wrong just a week ago
     public TreeNode trimBST(TreeNode root, int low, int high) {
         if (root == null) {
