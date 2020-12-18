@@ -8,6 +8,23 @@ never differ by more than 1.
 
 public class sortedArrayToBST {
 
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return arrToBST(nums, 0, nums.length - 1);
+    }
+
+    public TreeNode arrToBST(int[] nums, int l, int r) {
+        if (l > r) {
+            return null;
+        }
+
+        int mid = l + (r - l) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = arrToBST(nums, l, mid - 1);
+        root.right = arrToBST(nums, mid + 1, r);
+
+        return root;
+    }
+
     // Incorrect attempt. I thought I could try to assign elements from middle of the array to the beginning of the array to
     // left subtree and all the elements after the middle of the array to the right subtree
     public TreeNode sortedArrayToBST(int[] nums) {
