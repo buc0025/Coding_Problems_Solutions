@@ -5,6 +5,30 @@ Write a program to find the node at which the intersection of two singly linked 
  */
 public class IntersectionTwoLinkedLists {
 
+    // Incorrect solution, should've used else statements for assigning heads to head.next
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        ListNode aTrail = headA;
+        ListNode bTrail = headB;
+
+        while (aTrail != bTrail) {
+            if (aTrail == null) {
+                aTrail = headB;
+            }
+
+            if (bTrail == null) {
+                bTrail = headA;
+            }
+            aTrail = aTrail.next;
+            bTrail = bTrail.next;
+        }
+
+        return aTrail;
+    }
+
     // Incorrect attempt. Idea was to get the length of both lists and make them the same length so they'll intersect at the
     // same time if they do intersect.
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
