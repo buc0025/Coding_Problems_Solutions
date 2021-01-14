@@ -40,7 +40,7 @@ public class SelfDividingNumbers {
                 num /= 10;
             }
         }
-        
+
         return list;
     }
 }

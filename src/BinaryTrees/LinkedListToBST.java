@@ -9,6 +9,33 @@ never differ by more than 1.
 
 public class LinkedListToBST {
 
+    public TreeNode sortedListToBST(ListNode head) {
+        List<Integer> list = new ArrayList<>();
+        nodeToList(head, list);
+
+        return helper(list, 0, list.size()-1);
+    }
+
+    public TreeNode helper(List<Integer> list, int left, int right) {
+        if (left > right) {
+            return null;
+        }
+
+        int mid = (left + right) / 2;
+        TreeNode node = new TreeNode(list.get(mid));
+        node.left = helper(list, left, mid - 1);
+        node.right = helper(list, mid + 1, right);
+
+        return node;
+    }
+
+    public void nodeToList(ListNode head, List<Integer> list) {
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+    }
+
     // Idea was taken from solution forming BST from sorted array
     public TreeNode sortedListToBST(ListNode head) {
         int[] arr = turnToArray(head);
