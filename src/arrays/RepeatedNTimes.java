@@ -24,7 +24,7 @@ public class RepeatedNTimes {
                 break;
             }
         }
-        
+
         return ans;
     }
 }
