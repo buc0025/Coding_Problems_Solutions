@@ -10,6 +10,30 @@ generate the decompressed list. Return the decompressed list.
 public class DecompressList {
 
     public int[] decompressRLElist(int[] nums) {
+        int len = 0;
+
+        for (int i = 0; i < nums.length; i+=2) {
+            len += nums[i];
+        }
+
+        int[] arr = new int[len];
+        int index = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i % 2 == 0) {
+                int k = nums[i];
+                while (k > 0) {
+                    arr[index] = nums[i + 1];
+                    index++;
+                    k--;
+                }
+            }
+        }
+
+        return arr;
+    }
+
+    public int[] decompressRLElist(int[] nums) {
         List<Integer> list = new ArrayList<>();
 
         // Concatenating all the sublists from left to right into list
