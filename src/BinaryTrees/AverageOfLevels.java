@@ -10,6 +10,41 @@ public class AverageOfLevels {
         List<Double> list = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
+        queue.add(null);
+        double sum = 0;
+        double divisor = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                sum += node.val;
+                divisor++;
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+            if (node == null) {
+                queue.add(null);
+                list.add(sum / divisor);
+                sum = 0;
+                divisor = 0;
+            }
+            if (node == null && queue.peek() == null) {
+                break;
+            }
+        }
+
+        return list;
+    }
+
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
         queue.add(null); // The first null will let me know I've reach the end of the level
 
         long sum = 0;
