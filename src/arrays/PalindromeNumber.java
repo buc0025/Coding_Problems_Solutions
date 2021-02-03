@@ -9,6 +9,30 @@ Follow up: Could you solve it without converting the integer to a string?
 public class PalindromeNumber {
 
     public boolean isPalindrome(int x) {
+        if (x < 0 || (x != 0 && x % 10 == 0)) {
+            return false;
+        }
+
+        List<Integer> list = new ArrayList<>();
+
+        while (x > 0) {
+            int n = x % 10;
+            list.add(n);
+            x /=10;
+        }
+
+        while (list.size() > 1) {
+            if (list.get(0) != list.get(list.size() - 1)) {
+                return false;
+            }
+            list.remove(0);
+            list.remove(list.size() - 1);
+        }
+
+        return true;
+    }
+
+    public boolean isPalindrome(int x) {
         if (x >= 0 && x < 10) {
             return true;
         }
