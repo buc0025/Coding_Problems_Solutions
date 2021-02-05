@@ -5,6 +5,26 @@ Write a program to find the node at which the intersection of two singly linked 
  */
 public class IntersectionTwoLinkedLists {
 
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode headb = headB;
+        ListNode heada = headA;
+
+        while (headA != headB) {
+            if (headA == null) {
+                headA = headb;
+            } else {
+                headA = headA.next;
+            }
+            if (headB == null) {
+                headB = heada;
+            } else {
+                headB = headB.next;
+            }
+        }
+
+        return headA;
+    }
+
     // Incorrect solution, should've used else statements for assigning heads to head.next
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) {
