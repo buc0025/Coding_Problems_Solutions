@@ -7,6 +7,67 @@ Given two non-negative integers num1 and num2 represented as string, return the 
 public class AddStrings {
 
     public String addStrings(String num1, String num2) {
+        int len1 = num1.length()-1;
+        int len2 = num2.length()-1;
+        boolean carry = false;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        while (len1 >= 0 && len2 >= 0) {
+            int n1 = Integer.valueOf(num1.substring(len1, len1 + 1));
+            int n2 = Integer.valueOf(num2.substring(len2, len2 + 1));
+            int sum = n1 + n2;
+            if (carry) {
+                sum += 1;
+            }
+            if (sum >= 10) {
+                carry = true;
+                stringBuilder.append(sum - 10);
+            } else {
+                stringBuilder.append(sum);
+                carry = false;
+            }
+            len1--;
+            len2--;
+        }
+
+        while (len1 >= 0) {
+            int n1 = Integer.valueOf(num1.substring(len1, len1 + 1));
+            if (carry) {
+                n1 += 1;
+            }
+            if (n1 >= 10) {
+                carry = true;
+                stringBuilder.append(n1 - 10);
+            } else {
+                stringBuilder.append(n1);
+                carry = false;
+            }
+            len1--;
+        }
+
+        while (len2 >= 0) {
+            int n2 = Integer.valueOf(num2.substring(len2, len2 + 1));
+            if (carry) {
+                n2 += 1;
+            }
+            if (n2 >= 10) {
+                carry = true;
+                stringBuilder.append(n2 - 10);
+            } else {
+                stringBuilder.append(n2);
+                carry = false;
+            }
+            len2--;
+        }
+
+        if (carry) {
+            stringBuilder.append(1);
+        }
+
+        return stringBuilder.reverse().toString();
+    }
+
+    public String addStrings(String num1, String num2) {
         StringBuilder stringBuilder = new StringBuilder();
         int num1Len = num1.length() -1;
         int num2Len = num2.length() - 1;
