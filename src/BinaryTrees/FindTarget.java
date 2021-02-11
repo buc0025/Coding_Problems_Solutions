@@ -8,6 +8,23 @@ that their sum is equal to the given target.
 public class FindTarget {
 
     public boolean findTarget(TreeNode root, int k) {
+        Set<Integer> set = new HashSet<>();
+
+        return helper(root, k, set);
+    }
+    public boolean helper(TreeNode root, int k, Set<Integer> set) {
+        if (root == null) {
+            return false;
+        }
+        if (set.contains(k - root.val)) {
+            return true;
+        }
+        set.add(root.val);
+
+        return helper(root.left, k, set) || helper(root.right, k, set);
+    }
+
+    public boolean findTarget(TreeNode root, int k) {
         List<Integer> list = new ArrayList<>();
         list = helper(root, list);
 

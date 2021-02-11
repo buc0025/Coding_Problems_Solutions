@@ -9,6 +9,23 @@ The binary search tree is guaranteed to have unique values.
 public class RangeSumBST {
 
     public int rangeSumBST(TreeNode root, int low, int high) {
+        if (root == null) {
+            return 0;
+        }
+
+        int sum = 0;
+
+        if (root.val >= low && root.val <= high) {
+            sum+=root.val;
+        }
+
+        sum+=rangeSumBST(root.left, low, high);
+        sum+=rangeSumBST(root.right, low, high);
+
+        return sum;
+    }
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
         int sum = 0;
 
         Queue<TreeNode> queue = new LinkedList<>();
