@@ -22,11 +22,12 @@ public class FindMode {
             return new int[] {list.get(0)};
         }
 
-
-        int max = 1;
-        int max1 = 1;
+        int max = 1;  // Counter that resets after a new element in list is reached
+        int max1 = 1; // Counter used alongside max to keep track of how many
+        // times the most frequently element occurs
 
         Map<Integer, Integer> map = new HashMap<>();
+        // First element of list is used as reference for mode counter
         map.put(list.get(0), 1);
 
         for (int i = 1; i < list.size(); i++) {
@@ -35,16 +36,16 @@ public class FindMode {
             } else {
                 max = 1;
             }
+
             max1 = Math.max(max, max1);
 
-            if (map.containsKey(list.get(i))) {
-                map.put(list.get(i), map.get(list.get(i)) + 1);
-            } else {
-                map.put(list.get(i), 1);
-            }
+            // pairs elements with how many times they appear in list
+            map.put(list.get(i), map.getOrDefault(list.get(i), 0) + 1);
         }
 
-        int size = 0;
+        int size = 0; // length of array that is to be returned
+
+        // Finds how many elements are modes in list
         for (int m : map.keySet()) {
             if (map.get(m) == max1) {
                 size++;
@@ -53,6 +54,8 @@ public class FindMode {
 
         int[] arr = new int[size];
         int index = 0;
+
+        // Fills new array with modes from list
         for (int m : map.keySet()) {
             if (map.get(m) == max1) {
                 arr[index] = m;
