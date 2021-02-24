@@ -14,6 +14,44 @@ public class ReplacePattern {
         List<String> list = new ArrayList<>();
 
         for (String word : words) {
+            if (matchPat(word, pattern)) {
+                list.add(word);
+            }
+        }
+        return list;
+    }
+
+    public boolean matchPat(String word, String pattern) {
+        Map<Character, Character> map1 = new HashMap<>();
+        Map<Character, Character> map2 = new HashMap<>();
+
+        if (word.length() != pattern.length()) {
+            return false;
+        }
+
+        for (int i = 0; i < word.length(); i++) {
+            char wc = word.charAt(i);
+            char pc = pattern.charAt(i);
+            // Checks to see if map1's value is the same at char at pattern's i'th index
+            if (map1.containsKey(wc) && map1.get(wc) != pc) {
+                return false;
+            } else {
+                map1.put(wc, pc);
+            }
+            // Checks to see if map2's value is the same at char at word's i'th index
+            if (map2.containsKey(pc) && map2.get(pc) != wc) {
+                return false;
+            } else {
+                map2.put(pc, wc);
+            }
+        }
+        return true;
+    }
+
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> list = new ArrayList<>();
+
+        for (String word : words) {
             if (match(word, pattern)) {
                 list.add(word);
             }
