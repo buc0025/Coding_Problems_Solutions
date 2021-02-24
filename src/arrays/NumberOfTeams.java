@@ -12,6 +12,46 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 
 public class NumberOfTeams {
 
+    public int numTeams(int[] rating) {
+        int ans = 0;
+
+        for (int i = 1; i < rating.length - 1; i++) {
+            int leftLow = 0;
+            int leftHigh = 0;
+            int rightLow = 0;
+            int rightHigh = 0;
+            // check how many numbers to the left is greater than or less than center number
+            for (int j = 0; j < i; j++) {
+                if (rating[j] < rating[i]) {
+                    leftLow++;
+                } else {
+                    leftHigh++;
+                }
+            }
+
+            // check how many numbers to the right is greater than or less than center number
+            for (int j = rating.length - 1; j > i; j--) {
+                if (rating[j] > rating[i]) {
+                    rightHigh++;
+                } else {
+                    rightLow++;
+                }
+            }
+
+            // Multiply the possible combinations for center numbers with left numbers being lower
+            // and right numbers being higher
+            if (leftLow > 0 && rightHigh > 0) {
+                ans += leftLow * rightHigh;
+            }
+            // Multiply the possible combinations for center numbers with left numbers being higher
+            // and right numbers being lower
+            if (leftHigh > 0 && rightLow > 0) {
+                ans += leftHigh * rightLow;
+            }
+        }
+        return ans;
+    }
+
     // Idea is to compare the left elements and right elements with the index you're on and multiple both sides if they fit the
     // criteria of (rating[i] < rating[j] < rating[k]) or (rating[i] > rating[j] > rating[k]) where (0 <= i < j < k < n).
     public int numTeams(int[] rating) {
