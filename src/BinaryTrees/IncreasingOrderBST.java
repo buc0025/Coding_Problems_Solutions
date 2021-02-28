@@ -11,6 +11,30 @@ public class IncreasingOrderBST {
         List<Integer> list = new ArrayList<>();
         inOrder(root, list);
 
+        TreeNode node = new TreeNode(-1);
+        TreeNode dummy = node;
+
+        for (int i = 0; i < list.size(); i++) {
+            dummy.right = new TreeNode(list.get(i));
+            dummy = dummy.right;
+        }
+
+        return node.right;
+    }
+
+    public void inOrder(TreeNode root, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        inOrder(root.left, list);
+        list.add(root.val);
+        inOrder(root.right, list);
+    }
+
+    public TreeNode increasingBST(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        inOrder(root, list);
+
         TreeNode node = new TreeNode(0);
         TreeNode top = node;
 
