@@ -6,6 +6,53 @@ Given a non-empty array of integers, return the k most frequent elements.
 
 public class TopFrequentElements {
 
+    // Incorrect solution. Solution only works if number of occurrences in array is unique
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // Keeps track of each element's occurrence
+        for (int n : nums) {
+            if (map.containsKey(n)) {
+                map.put(n, map.get(n) + 1);
+            } else {
+                map.put(n, 1);
+            }
+        }
+
+        Set<Integer> set = new HashSet<>();
+
+        // Helps sort the order of occurrences
+        for (int n : map.values()) {
+            set.add(n);
+        }
+
+        List<Integer> list = new ArrayList<>();
+
+        // Using a list to hold values in set since indexes can't be
+        // accessed in set
+        for (int s : set) {
+            list.add(s);
+        }
+
+        int[] ans = new int[k];
+        int ansIndex = 0;
+
+        // Adding element that matches the number of occurrences at the
+        // end of the list
+        for (int n : map.keySet()) {
+            int size = list.size();
+            if (ansIndex < k) {
+                if (list.get(size - 1) == map.get(n)) {
+                    ans[ansIndex] = n;
+                    ansIndex++;
+                    list.remove(size - 1);
+                }
+            }
+        }
+
+        return ans;
+    }
+
     //Incorrect attempt. Was under the assumption that top k frequent elements were unique and therefore used a set
     public int[] topKFrequent(int[] nums, int k) {
         if (k == nums.length) {
