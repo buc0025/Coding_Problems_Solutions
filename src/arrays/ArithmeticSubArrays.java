@@ -16,6 +16,37 @@ public class ArithmeticSubArrays {
     public List<Boolean> checkArithmeticSubarrays(int[] nums, int[] l, int[] r) {
         List<Boolean> list = new ArrayList<>();
 
+        // Form l.length arrays
+        for (int i = 0; i < l.length; i++) {
+            int[] arr = new int[r[i] + 1 - l[i]]; // Each array length is from l[i] to r[i]
+            int index = 0;
+            for (int j = l[i]; j <= r[i]; j++) {
+                arr[index] = nums[j];
+                index++;
+            }
+
+            Arrays.sort(arr); // Sort each array to check arithmetic sequence
+
+            int count = 0; // keeps count of arithmetic sequence in each array
+            for (int n = 1; n < arr.length; n++) {
+                if (Math.abs(arr[n] - arr[n-1]) == Math.abs(arr[0] - arr[1])) {
+                    count++;
+                }
+            }
+
+            // Array is in arithmetic sequence if it occurs in each iteration
+            if (count == arr.length - 1) {
+                list.add(true);
+            } else {
+                list.add(false);
+            }
+        }
+        return list;
+    }
+
+    public List<Boolean> checkArithmeticSubarrays(int[] nums, int[] l, int[] r) {
+        List<Boolean> list = new ArrayList<>();
+
         // Looping through l array and r array to check each subarray
         for (int i = 0; i < l.length; i++) {
             // Forming each subarray
