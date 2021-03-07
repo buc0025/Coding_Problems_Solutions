@@ -8,6 +8,34 @@ root of the trimmed binary search tree.
 
 public class TrimBST {
 
+    // Incorrect attempt that only passes 28/78 test cases
+    public TreeNode trimBST(TreeNode root, int low, int high) {
+        if (root == null) {
+            return root;
+        }
+
+        if (root.left != null && root.left.val < low) {
+            if (root.left.right != null && root.left.right.val >= low) {
+                root.left = root.left.right;
+            } else {
+                root.left = null;
+            }
+        }
+
+        if (root.right != null && root.right.val > high) {
+            if (root.right.left != null && root.right.left.val <= high) {
+                root.right = root.right.left;
+            } else {
+                root.right = null;
+            }
+        }
+
+        trimBST(root.left, low, high);
+        trimBST(root.right, low, high);
+
+        return root;
+    }
+
     // Incorrect attempt because I'm not returning when comparing root.val with low and high
     public TreeNode trimBST(TreeNode root, int low, int high) {
         if (root == null) {
