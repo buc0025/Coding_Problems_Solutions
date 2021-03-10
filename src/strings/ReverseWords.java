@@ -7,6 +7,28 @@ initial word order.
 
 public class ReverseWords {
 
+    public String reverseWords(String s) {
+        String[] arr = s.split(" ");
+        String result = "";
+
+        for (String a : arr) {
+            result += reverseWord(a);
+            result += " ";
+        }
+
+        return result.trim();
+    }
+
+    public static String reverseWord(String word) {
+        String result = "";
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            result += word.charAt(i);
+        }
+
+        return result;
+    }
+
     // Previous problem that was not committed
     public String reverseWords(String s) {
         StringBuilder reverse = new StringBuilder();
