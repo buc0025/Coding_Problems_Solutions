@@ -13,6 +13,40 @@ empty() -- Return whether the queue is empty.
 
 public class ImplementQueue {
 
+    // Solution uses only 1 stack
+    public MyQueue() {
+        stack1 = new Stack<>();
+    }
+
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        List<Integer> list = new ArrayList<>();
+        while (!stack1.isEmpty()) {
+            list.add(stack1.pop());
+        }
+
+        stack1.push(x);
+
+        for (int i = list.size() - 1; i >= 0; i--) {
+            stack1.push(list.get(i));
+        }
+    }
+
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        return stack1.pop();
+    }
+
+    /** Get the front element. */
+    public int peek() {
+        return stack1.peek();
+    }
+
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return stack1.isEmpty();
+    }
+
     public MyQueue() {
         stack1 = new Stack<>();
         stack2 = new Stack<>();
