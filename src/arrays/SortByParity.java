@@ -10,6 +10,24 @@ You may return any answer array that satisfies this condition.
 
 public class SortByParity {
 
+    public int[] sortArrayByParityII(int[] nums) {
+        int[] sorted = new int[nums.length];
+        int evenIndex = 0;
+        int oddIndex = 1;
+
+        for (int n : nums) {
+            if (n % 2 == 0) {
+                sorted[evenIndex] = n;
+                evenIndex +=2;
+            } else {
+                sorted[oddIndex] = n;
+                oddIndex +=2;
+            }
+        }
+
+        return sorted;
+    }
+
     public int[] sortArrayByParityII(int[] arr) {
         List<Integer> even = new ArrayList<>();
         List<Integer> odd = new ArrayList<>();
