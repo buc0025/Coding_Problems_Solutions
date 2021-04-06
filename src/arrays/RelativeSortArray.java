@@ -11,6 +11,48 @@ arr2 should be placed at the end of arr1 in ascending order.
 public class RelativeSortArray {
 
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        Map<Integer, Integer> map = new HashMap<>(); // keep track of occurrences in arr1
+
+        int[] arr = new int[arr1.length]; // return new array
+
+        for (int a : arr1) {
+            map.put(a, map.getOrDefault(a, 0) + 1);
+        }
+
+        int index = 0;
+
+        for (int i = 0; i < arr2.length; i++) {
+            //adding sorted elements of arr1 that appear in arr2 in relative order for new arr
+            while (map.get(arr2[i]) > 0) {
+                arr[index] = arr2[i];
+                index++;
+                map.put(arr2[i], map.get(arr2[i]) - 1);
+            }
+        }
+
+        List<Integer> list = new ArrayList<>(); // contains elements in arr1 that were not in arr2
+
+        for (int m : map.keySet()) {
+            if (map.get(m) > 0) {
+                while (map.get(m) > 0) {
+                    list.add(m);
+                    map.put(m, map.get(m) - 1);
+                }
+            }
+        }
+
+        Collections.sort(list);
+
+        // adds rest of sorted elements in arr1 that were not in arr2 into new arr
+        for (int l : list) {
+            arr[index] = l;
+            index++;
+        }
+
+        return arr;
+    }
+
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int a : arr1) {
             if (map.containsKey(a)) {
