@@ -9,6 +9,23 @@ String words[i] is substring of words[j], if can be obtained removing some chara
 public class StringMatching {
 
     public List<String> stringMatching(String[] words) {
+        Set<String> set = new HashSet<>();
+
+        for (int i = 0; i < words.length; i++) {
+            String currentWord = words[i];
+            for (int j = 0; j < words.length; j++) {
+                if (words[j].length() < currentWord.length() && currentWord.contains(words[j])) {
+                    set.add(words[j]);
+                }
+            }
+        }
+
+        List<String> list = new ArrayList<>(set);
+
+        return list;
+    }
+
+    public List<String> stringMatching(String[] words) {
         List<String> list = new ArrayList<>();
 
         for (int i = 0; i < words.length; i++) {
