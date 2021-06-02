@@ -16,6 +16,36 @@ false otherwise.
 
 public class IsSumEqual {
 
+    public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+        int first = 0;
+        int second = 0;
+        int target = 0;
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < firstWord.length(); i++) {
+            stringBuilder.append((int) firstWord.charAt(i) - 97);
+        }
+
+        first = Integer.valueOf(stringBuilder.toString());
+        stringBuilder.setLength(0);
+
+        for (int i = 0; i < secondWord.length(); i++) {
+            stringBuilder.append((int) secondWord.charAt(i) - 97);
+        }
+
+        second = Integer.valueOf(stringBuilder.toString());
+        stringBuilder.setLength(0);
+
+        for (int i = 0; i < targetWord.length(); i++) {
+            stringBuilder.append((int) targetWord.charAt(i) - 97);
+        }
+
+        target = Integer.valueOf(stringBuilder.toString());
+
+        return first + second == target ? true : false;
+    }
+
     // Wrote a separate method to calculate the numerical value of a string
     public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
         if (stringToInt(firstWord) + stringToInt(secondWord) == stringToInt(targetWord)) {
