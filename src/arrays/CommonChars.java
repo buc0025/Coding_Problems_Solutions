@@ -10,6 +10,40 @@ You may return the answer in any order.
 
 public class CommonChars {
 
+    /*
+    Got the idea from Nick White's youtube video solution. An int array is created first to hold largest possible number of occurrences
+    for each letter in the alphabet. We're trying to return the minimum number of occurrences in each string. A second int array
+    is created to hold the number of occurrences in each word and wordsArr is then filled with the minimum. Lastly, we loop through
+    wordsArr and add all the elements and the number of times they appear to a list.
+     */
+    public List<String> commonChars(String[] words) {
+        List<String> list = new ArrayList<>();
+
+        int[] wordsArr = new int[26];
+        Arrays.fill(wordsArr, 101);
+
+        for (String word : words) {
+            int[] minArr = new int[26];
+
+            for (int i = 0; i < word.length(); i++) {
+                minArr[word.charAt(i) - 'a']++;
+            }
+
+            for (int i = 0; i < 26; i++) {
+                wordsArr[i] = Math.min(wordsArr[i], minArr[i]);
+            }
+        }
+
+        for (int i = 0; i < wordsArr.length; i++) {
+            while (wordsArr[i] > 0) {
+                list.add("" + ((char)(i + 'a')));
+                wordsArr[i]--;
+            }
+        }
+
+        return list;
+    }
+
     /*Realized why it was an incorrect attempt after not passing certain test cases. Idea was to see  if the number of
     occurrences of a character is greater than the length of the array. I assumed that character would be added to my
     list because it shows up in each string at least once. I realized this wouldn't work if a string didn't contain a

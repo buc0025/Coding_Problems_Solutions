@@ -7,7 +7,7 @@ Follow up question: Delete every nth node from circular linked list.
  */
 
 public class DeleteNodeCircular {
-    
+
     public static ListNode everyOther(ListNode head, int n) {
         ListNode dummy = head;
         dummy.next = head.next.next;
