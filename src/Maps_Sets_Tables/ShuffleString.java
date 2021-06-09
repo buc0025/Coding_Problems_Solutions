@@ -11,6 +11,18 @@ Return the shuffled string.
 public class ShuffleString {
 
     public String restoreString(String s, int[] indices) {
+        char[] arr = new char[indices.length];
+
+        for (int i = 0; i < indices.length; i++) {
+            arr[indices[i]] = s.charAt(i);
+        }
+
+        String word = new String(arr);
+
+        return word;
+    }
+
+    public String restoreString(String s, int[] indices) {
         char[] arr = new char[s.length()];
 
         for (int i = 0; i < indices.length; i++) {
