@@ -8,6 +8,29 @@ Given an integer n, return any array containing n unique integers such that they
 public class sumZero {
 
     public int[] sumZero(int n) {
+        int[] arr = new int[n];
+        int half = n / 2;
+
+        if (n % 2 == 1) {
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = half;
+                half--;
+            }
+            return arr;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (half == 0) {
+                half = -1;
+            }
+            arr[i] = half;
+            half--;
+        }
+
+        return arr;
+    }
+
+    public int[] sumZero(int n) {
         int[] arr = new int[n];  //3
         int posHalf = n / 2;        // 1
         int negHalf = n / 2;        // 1
