@@ -10,6 +10,38 @@ Return false otherwise.
 
 public class PathCrossing {
 
+    // The solution is easier to conceptualize using coordinates by incrementing and decrementing the x and y axis. The set is used
+    // to hold all the coordinates and if there are any repeats then the paths cross.
+    public boolean isPathCrossing(String path) {
+        Set<String> set = new HashSet<>();
+
+        set.add("0,0");
+
+        int x = 0;
+        int y = 0;
+
+        for (int i = 0; i < path.length(); i++) {
+            if (path.charAt(i) == 'N') {
+                y++;
+            } else if (path.charAt(i) == 'S') {
+                y--;
+            } else if (path.charAt(i) == 'E') {
+                x++;
+            } else {
+                x--;
+            }
+
+            String coordinate = x + "," + y;
+
+            if (set.contains(coordinate)) {
+                return true;
+            }
+            set.add(x + "," + y);
+        }
+
+        return false;
+    }
+
     /*
     When drawing out different paths, I noticed that if the opposite directions appear the same number of times as each other and
     if perpendicular directions appear more than once then they will cross paths. This didn't workout because I didn't account for
