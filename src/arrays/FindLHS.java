@@ -12,6 +12,28 @@ of the remaining elements.
 public class FindLHS {
 
     /*
+    Such a simple solution from top discussion. Idea is to keep track of frequency of each element. If the map contains the element
+    + 1, the get the values of the element and it's + 1 and add them together.
+     */
+    public int findLHS(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int n : nums) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        }
+
+        int ans = 0;
+
+        for (int m : map.keySet()) {
+            if (map.containsKey(m + 1)) {
+                ans = Math.max(map.get(m) + map.get(m + 1), ans);
+            }
+        }
+
+        return ans;
+    }
+
+    /*
     Incorrect solution. The idea is to keep track of 3 different integers. If 2 of the integers has a difference of only 1 then
     those are my current and next variables.
      */
