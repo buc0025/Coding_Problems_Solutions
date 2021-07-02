@@ -20,6 +20,34 @@ public class FindJudge {
             return 1;
         }
 
+        int[] arr = new int[n + 1];
+
+        //Increment arr[i] to indicate frequency of potential judge
+        for (int i = 0; i < trust.length; i++) {
+            arr[trust[i][1]]++;
+        }
+
+        //If judge appears as towns person then they are not the judge
+        for (int i = 0; i < trust.length; i++) {
+            if (arr[trust[i][0]] > 0) {
+                arr[trust[i][0]] = 0;
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == n - 1) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public int findJudge(int n, int[][] trust) {
+        if (n == 1) {
+            return 1;
+        }
+
         //Sets keep track of the townspeople and potential judges
         Set<Integer> judge = new HashSet<>();
         Set<Integer> town = new HashSet<>();
