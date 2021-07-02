@@ -16,32 +16,40 @@ If the town judge exists and can be identified, return the label of the town jud
 public class FindJudge {
 
     public int findJudge(int n, int[][] trust) {
+        if (n == 1) {
+            return 1;
+        }
+
+        //Sets keep track of the townspeople and potential judges
         Set<Integer> judge = new HashSet<>();
         Set<Integer> town = new HashSet<>();
-        int count = 0;
 
         for (int i = 0; i < trust.length; i++) {
             judge.add(trust[i][1]);
             town.add(trust[i][0]);
         }
 
-        List<Integer> list = new ArrayList<>();
+        int answer = -1;
 
+        //If the judges don't appear as a towns person then they replace answer
         for (int j : judge) {
             if (!town.contains(j)) {
-                list.add(j);
+                answer = j;
+                break; // There can only be 1 judge so we break out early if we find one
             }
         }
 
-        if (list.size() > 0) {
-            for (int i = 0; i < trust.length; i++) {
-                if (trust[i][1] == list.get(0)) {
-                    count++;
-                }
+        int count = 0; // Keeps track of how many times the potential judge has been voted
+
+
+        for (int i = 0; i < trust.length; i++) {
+            if (trust[i][1] == answer) {
+                count++;
             }
-            if (count == town.size()) {
-                return list.get(0);
-            }
+        }
+        // If count equals to all the townspeople excluding the judge then we return the judge
+        if (count == n - 1) {
+            return answer;
         }
 
         return -1;
