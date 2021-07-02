@@ -12,6 +12,10 @@ of them. It can be shown that an answer is always possible with the given constr
 
 public class ReplaceAllQuestionMarks {
 
+    /*
+    Since we don't want any characters to repeat consecutively, we only need 3 different chars. In this case I chose to use 'a', 'b',
+    and 'c'. We have to focus on the current char and make sure the next doesn't equal the same.
+     */
     public String modifyString(String s) {
         if (s.length() == 1) {
             if (s.charAt(0) == '?') {
