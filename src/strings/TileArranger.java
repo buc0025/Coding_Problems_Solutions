@@ -9,9 +9,12 @@ String[] arr = {"foob", "foo", "ba", "ba", "r", "z"};
 Answer = true
  */
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class TileArranger {
 
-    public boolean tileArranger(String s, String[] arr) {
+    public static boolean tileArranger(String s, String[] arr) {
         Set<Integer> set = new HashSet<>(); // makes sure tile is only used once
         int index = 0;
 
@@ -37,12 +40,21 @@ public class TileArranger {
                 }
             }
             if (index == s.length() - 1) {
-                System.out.println(true);
-                break;
+                return true;
             }
             // start over from the beginning of the given string for comparison and clear the set.
             index = 0;
             set.clear();
         }
+
+        return false;
     }
+
+    public static void main(String[] args) {
+        String word = "foobarbaz";
+        String[] arr = {"foob", "foo", "ba", "ba", "r", "z"};
+        System.out.println(tileArranger(word, arr));
+    }
+
+
 }
