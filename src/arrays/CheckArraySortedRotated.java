@@ -11,6 +11,54 @@ the modulo operation.
  */
 
 public class CheckArraySortedRotated {
+
+    /*
+    If numbers in the array are not in sorted order then those should be the biggest and smallest numbers in the array. If there
+    are more than two instances where numbers in array are not in order then there is no way for array to be sorted even after
+    rotation. Once I found the break in the array, I started adding the remaining numbers into a list. I then started adding
+    numbers from the beginning array to the list until I right before the break in the array. If the array is sorted and rotated,
+    the list should be in sorted order.
+     */
+    public boolean check(int[] nums) {
+        int notSorted = 0;
+        int smallIndex = 0;
+        int bigIndex = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < nums[i - 1]) {
+                notSorted++;
+                smallIndex = i;
+                bigIndex = i - 1;
+            }
+        }
+
+        if (notSorted > 1) {
+            return false;
+        }
+
+        if (notSorted == 0) {
+            return true;
+        }
+
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = smallIndex; i < nums.length; i++) {
+            list.add(nums[i]);
+        }
+
+        for (int i = 0; i <= bigIndex; i++) {
+            list.add(nums[i]);
+        }
+
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i) < list.get(i - 1)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /*
     Idea was to find the smallest element in the array and its index, from that index I will extract each element in order until
     all elements inside array has been extracted and placed into a list. The list is compared with a sorted array. If they match
