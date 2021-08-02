@@ -13,6 +13,49 @@ the modulo operation.
 public class CheckArraySortedRotated {
 
     /*
+    Improved time and space complexity by not using a list to track sorted array. Logic is checking the start of the smallest
+    number until the end of the array to see if numbers are in order and also coming it to supposed biggest number. Same idea
+    for beginning of array to index of where biggest number in array is.
+     */
+    public boolean check(int[] nums) {
+        int notSorted = 0;
+        int smallIndex = 0;
+        int bigIndex = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < nums[i - 1]) {
+                notSorted++;
+                smallIndex = i;
+                bigIndex = i - 1;
+            }
+        }
+
+        if (notSorted > 1) {
+            return false;
+        }
+
+        if (notSorted == 0) {
+            return true;
+        }
+
+        int endNum = nums[nums.length - 1];
+
+        for (int i = smallIndex + 1; i < nums.length; i++) {
+            if (nums[i] < nums[i - 1] || nums[i - 1] > nums[bigIndex] || nums[i] > nums[bigIndex]) {
+                return false;
+            }
+        }
+
+        for (int i = 1; i <= bigIndex; i++) {
+            if (nums[i] < nums[i - 1] || nums[i - 1] < endNum || nums[i] < endNum) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /*
     If numbers in the array are not in sorted order then those should be the biggest and smallest numbers in the array. If there
     are more than two instances where numbers in array are not in order then there is no way for array to be sorted even after
     rotation. Once I found the break in the array, I started adding the remaining numbers into a list. I then started adding
