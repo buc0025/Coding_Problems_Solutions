@@ -12,6 +12,25 @@ the modulo operation.
 
 public class CheckArraySortedRotated {
 
+    // Shortened o(n) solutiong
+    public boolean check(int[] nums) {
+        int sorted = 0;
+        if (nums[0] < nums[nums.length - 1]) {
+            sorted++;
+        }
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < nums[i - 1]) {
+                sorted++;
+            }
+            if (sorted > 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /*
     Improved time and space complexity by not using a list to track sorted array. Logic is checking the start of the smallest
     number until the end of the array to see if numbers are in order and also coming it to supposed biggest number. Same idea
