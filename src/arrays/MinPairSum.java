@@ -13,6 +13,36 @@ Return the minimized maximum pair sum after optimally pairing up the elements.
 
 public class MinPairSum {
 
+    // Same concept as first solution but without using built-in sort
+    public int minPairSum(int[] nums) {
+        int[] arr = new int[100001];
+
+        for (int n : nums) {
+            arr[n]++;
+        }
+
+        int ans = 0;
+        int l = 0;
+        int r = arr.length - 1;
+
+        while (l <= r) {
+            if (arr[l] != 0 && arr[r] != 0) {
+                int sum = l + r;
+                ans = Math.max(sum, ans);
+                arr[l]--;
+                arr[r]--;
+            }
+            if (arr[l] == 0) {
+                l++;
+            }
+            if (arr[r] == 0) {
+                r--;
+            }
+        }
+
+        return ans;
+    }
+
     public int minPairSum(int[] nums) {
         Arrays.sort(nums);
 
