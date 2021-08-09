@@ -10,6 +10,29 @@ that they sum up to n.
 
 public class MinPartitions {
 
+    // Shortened runtime by traversing through string from both ends
+    public int minPartitions(String n) {
+        int max = 0;
+        int l = 0;
+        int r = n.length() - 1;
+
+        while (l <= r) {
+            int lVal = Integer.valueOf(n.substring(l, l + 1));
+            int rVal = Integer.valueOf(n.substring(r, r + 1));
+
+            if (lVal == 9 || rVal == 9) {
+                return 9;
+            }
+
+            max = Math.max(max, Math.max(lVal, rVal));
+
+            l++;
+            r--;
+        }
+
+        return max;
+    }
+
     public int minPartitions(String n) {
         int max = 0;
 
