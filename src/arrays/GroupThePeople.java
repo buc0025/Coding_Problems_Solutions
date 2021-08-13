@@ -46,6 +46,5 @@ public class GroupThePeople {
         }
 
         return result;
-        //8/11/2021 test
     }
 }
