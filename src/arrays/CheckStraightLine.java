@@ -7,6 +7,53 @@ points make a straight line in the XY plane.
 
 public class CheckStraightLine {
 
+    public boolean checkStraightLine(int[][] coordinates) {
+        int yCount = 0;
+        int xCount = 0;
+
+        // There can't be more than 1 point on both x and y axis
+        for (int i = 1; i < coordinates.length; i++) {
+            if (coordinates[i][0] == 0) {
+                yCount++;
+            }
+
+            if (coordinates[i][1] == 0) {
+                xCount++;
+            }
+
+            if (yCount > 1 && xCount > 1) {
+                return false;
+            }
+        }
+
+        double x1 = coordinates[0][0];
+        double y1 = coordinates[0][1];
+        double x2 = coordinates[1][0];
+        double y2 = coordinates[1][1];
+        double slope = 0;
+
+        if (x2 - x1 != 0) {
+            slope = (y2 - y1) / (x2 - x1);
+        }
+
+        for (int i = 1; i < coordinates.length; i++) {
+            double x2a = coordinates[i][0];
+            double y2a = coordinates[i][1];
+
+            if (x2a - x1 == 0 && slope != 0) {
+                return false;
+            }
+
+            if (x2a - x1 != 0) {
+                if (slope != (y2a - y1) / (x2a - x1)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     // Passes 75/79 test cases
     public boolean checkStraightLine(int[][] coordinates) {
         int x1 = coordinates[0][0];
