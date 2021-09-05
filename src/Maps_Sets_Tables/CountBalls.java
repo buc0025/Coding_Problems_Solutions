@@ -13,6 +13,32 @@ Given two integers lowLimit and highLimit, return the number of balls in the box
 
 public class CountBalls {
 
+    // Use one loop to find the max after establishing map
+    public int countBalls(int lowLimit, int highLimit) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int max = 0;
+
+        for (int i = lowLimit; i <= highLimit; i++) {
+            int n = i;
+            int num = 0;
+
+            while (n > 0) {
+                num += n % 10;
+                n /= 10;
+            }
+
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
+                max = Math.max(max, map.get(num));
+            } else {
+                map.put(num, 1);
+                max = Math.max(max, map.get(num));
+            }
+        }
+
+        return max;
+    }
+
     public int countBalls(int lowLimit, int highLimit) {
         Map<Integer, Integer> map = new HashMap<>();
 
