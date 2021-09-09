@@ -11,7 +11,7 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 
 public class MaxProfit {
 
-    // Time limit exceeded. Need to find better solution than o(n2) 
+    // Time limit exceeded. Need to find better solution than o(n2)
     public int maxProfit(int[] prices) {
         int max = 0;
 
