@@ -15,6 +15,32 @@ indices.
 public class OddCells {
 
     public int oddCells(int m, int n, int[][] indices) {
+        int[] arr = new int[m * n];
+        int odd = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            int row = indices[i][0] * n;
+            int col = indices[i][1];
+
+            for (int j = row; j < row + n; j++) {
+                arr[j]++;
+            }
+
+            for (int k = col; k < arr.length; k+=n) {
+                arr[k]++;
+            }
+        }
+
+        for (int a : arr) {
+            if (a % 2 != 0) {
+                odd++;
+            }
+        }
+
+        return odd;
+    }
+
+    public int oddCells(int m, int n, int[][] indices) {
         int[][] matrix = new int[m][n];
         int odd = 0;
 
