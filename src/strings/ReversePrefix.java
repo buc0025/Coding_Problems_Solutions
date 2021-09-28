@@ -11,6 +11,25 @@ Return the resulting string.
 
 public class ReversePrefix {
 
+    public String reversePrefix(String word, char ch) {
+        int index = word.indexOf(ch);
+        StringBuilder prefix = new StringBuilder();
+
+        if (index == -1) {
+            return word;
+        }
+
+        for (int i = index; i >= 0; i--) {
+            prefix.append(word.charAt(i));
+        }
+
+        for (int i = index + 1; i < word.length(); i++) {
+            prefix.append(word.charAt(i));
+        }
+
+        return prefix.toString();
+    }
+
     //Incorrect solution. Thought problem was asking to swap first char of word with char at the first occurrence of ch
     public String reversePrefix(String word, char ch) {
         int index = -1;
