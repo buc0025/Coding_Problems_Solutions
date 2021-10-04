@@ -7,6 +7,7 @@ Create a program that converts a phone number with letters to one with only numb
 
 public class DecodePhoneNumber {
 
+    //Testing authentication
     //Use replaceAll method instead of for loops and sets
     public static String textToNum(String phone) {
         StringBuilder number = new StringBuilder();
