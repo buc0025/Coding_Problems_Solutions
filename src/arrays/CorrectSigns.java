@@ -25,7 +25,7 @@ public class CorrectSigns {
                 }
             }
         }
-        
+
         return true;
     }
 }
