@@ -29,4 +29,33 @@ public class CountDuplicateCharacters {
 
         return count;
     }
+
+    //Separate solution without map by using 2 int arrays for uppercase and lowercase letters
+    public static int duplicateCount(String str) {
+        int count = 0;
+        int[] lower = new int[26];
+        int[] upper = new int[26];
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) < 97) {
+                upper[str.charAt(i) - 'A']++;
+            } else {
+                lower[str.charAt(i) - 'a']++;
+            }
+        }
+
+        for (int low : lower) {
+            if (low > 1) {
+                count++;
+            }
+        }
+
+        for (int up : upper) {
+            if (up > 1) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
