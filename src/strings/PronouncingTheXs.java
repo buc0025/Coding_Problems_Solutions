@@ -12,6 +12,7 @@ The word is just the letter "x", therefore replace it with "ecks".
 
 public class PronouncingTheXs {
 
+    // Does not pass all test cases. Solution only accounts for words beginning with x and words with just x.
     public static String xPronounce(String sentence) {
         String[] words = sentence.split(" ");
         StringBuilder stringBuilder = new StringBuilder();
