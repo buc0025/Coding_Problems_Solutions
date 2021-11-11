@@ -8,6 +8,44 @@ string.
 
 public class MostCommonLastVowel {
 
+    //Fix test cases where words don't have vowels at the end
+    public static String commonLastVowel(String sentence) {
+        sentence = sentence.toLowerCase();
+        Set<Character> vowels = new HashSet<>();
+        String[] words = sentence.split(" ");
+        Map<Character, Integer> map = new HashMap<>();
+
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+
+        int max = 0;
+        String result = "";
+
+        for (String word : words) {
+            for (int i = word.length() - 1; i >= 0; i--) {
+                char c = word.charAt(i);
+                if (vowels.contains(c)) {
+                    map.put(c, map.getOrDefault(c, 0) + 1);
+                    if (map.get(c) > max) {
+                        max = map.get(c);
+                    }
+                    break;
+                }
+            }
+        }
+
+        for (char c : map.keySet()) {
+            if (map.get(c) == max) {
+                result = Character.toString(c);
+            }
+        }
+
+        return result;
+    }
+
     public static String commonLastVowel(String sentence) {
         sentence = sentence.toLowerCase();
         Set<Character> vowels = new HashSet<>();
