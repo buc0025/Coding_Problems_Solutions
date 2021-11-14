@@ -12,6 +12,36 @@ For this challenge, forget how to add two numbers together.
 public class MemeSum {
 
     public static int memeSum(int a, int b) {
+        if (a == 0 && b == 0) {
+            return 0;
+        }
+
+        StringBuilder reverse = new StringBuilder();
+        Stack<Integer> stack = new Stack<>();
+
+        while (a > 0 || b > 0) {
+            int sum = 0;
+            if (a > 0 && b > 0) {
+                sum += a % 10 + b % 10;
+            } else if (a > 0) {
+                sum += a % 10;
+            } else {
+                sum += b % 10;
+            }
+
+            stack.push(sum);
+            a /= 10;
+            b /= 10;
+        }
+
+        while (!stack.isEmpty()) {
+            reverse.append(stack.pop());
+        }
+
+        return Integer.parseInt(reverse.toString());
+    }
+
+    public static int memeSum(int a, int b) {
         StringBuilder number = new StringBuilder();
         StringBuilder reverse = new StringBuilder();
 
