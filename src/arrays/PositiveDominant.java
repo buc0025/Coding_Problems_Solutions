@@ -22,6 +22,14 @@ public class PositiveDominant {
             }
         }
 
+        if (n[0] == n[1] && n[0] != 0) {
+            if (n[0] > 0) {
+                positive++;
+            } else if (n[0] < 0) {
+                negative++;
+            }
+        }
+
         for (int i = 1; i < n.length; i++) {
             if (n[i] != n[i - 1]) {
                 if (n[i] > 0) {
