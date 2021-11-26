@@ -15,6 +15,23 @@ public class GetConcatenation {
         int[] arr = new int[nums.length * 2];
         int index = 0;
 
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i < nums.length) {
+                arr[i] = nums[i];
+            } else {
+                arr[i] = nums[index];
+                index++;
+            }
+        }
+
+        return arr;
+    }
+
+    public int[] getConcatenation(int[] nums) {
+        int[] arr = new int[nums.length * 2];
+        int index = 0;
+
         for (int i = 0; i < arr.length; i++) {
             if (i >= nums.length) {
                 arr[i] = nums[index];
