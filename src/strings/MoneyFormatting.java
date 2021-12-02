@@ -19,15 +19,18 @@ public class MoneyFormatting {
         String cents = ".00";
         boolean negative = false;
 
+        // Formats the cents of the dollar amount
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
         String s = df.format(money);
 
+        // Removes '-' from string if present and will add it at the end when dollar amount is determined
         if (s.charAt(0) == '-') {
             s = s.substring(1);
             negative = true;
         }
 
+        // Finds the cents if present to check if pennies are present and add 0 to end if not
         if (s.contains(".")) {
             int decimal = s.indexOf(".");
             int len = s.length();
