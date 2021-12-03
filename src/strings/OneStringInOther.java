@@ -8,9 +8,10 @@ Return false otherwise. The character * is a wildcard, so it can take the place 
 
 public class OneStringInOther {
 
+    // Solution does not take into account of strings appearing only at the very end of other string
     public static boolean overlap(String str1, String str2) {
-        str1 = str1.toLowerCase();
-        str2 = str2.toLowerCase();
+        str1 = str1.replaceAll("\\*", "").toLowerCase();
+        str2 = str2.replaceAll("\\*", "").toLowerCase();
         int len1 = str1.length();
         int len2 = str2.length();
 
