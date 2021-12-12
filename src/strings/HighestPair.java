@@ -8,7 +8,6 @@ return the card number of the highest pair (trivial if there only exists a singl
 
 public class HighestPair {
 
-    // Still need to deal with 3 pairs or more
     public static String highestPair(String[] arr) {
         Map<String, Integer> map = new HashMap<>();
         int max = 1;
@@ -36,6 +35,29 @@ public class HighestPair {
                             } else if (map.get(card) == 2 && card.equals("Q")) {
                                 return "Q";
                             } else if (map.get(card) == 2 && card.equals("J")) {
+                                return "J";
+                            }
+                        }
+                    } else {
+                        n = Math.max(Integer.valueOf(m), n);
+                    }
+                }
+            }
+            return String.valueOf(n);
+        }
+
+        if (max >= 3) {
+            for (String m : map.keySet()) {
+                if (map.get(m) >= 3) {
+                    if (Character.isLetter(m.charAt(0))) {
+                        for (String card : map.keySet()) {
+                            if (map.get(card) >= 3 && card.equals("A")) {
+                                return "A";
+                            } else if (map.get(card) >= 3 && card.equals("K")) {
+                                return "K";
+                            } else if (map.get(card) >= 3 && card.equals("Q")) {
+                                return "Q";
+                            } else if (map.get(card) >= 3 && card.equals("J")) {
                                 return "J";
                             }
                         }
