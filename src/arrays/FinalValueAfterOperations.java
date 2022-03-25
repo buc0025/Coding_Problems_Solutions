@@ -13,6 +13,21 @@ operations.
 
 public class FinalValueAfterOperations {
 
+    //  3/25/2022 solution
+    public int finalValueAfterOperations(String[] operations) {
+        int result = 0;
+
+        for (String operation : operations) {
+            if (operation.contains("++")) {
+                result++;
+            } else {
+                result--;
+            }
+        }
+
+        return result;
+    }
+
     public int finalValueAfterOperations(String[] operations) {
         int result = 0;
 
