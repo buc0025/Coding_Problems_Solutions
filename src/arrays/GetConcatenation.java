@@ -11,6 +11,23 @@ Return the array ans.
 
 public class GetConcatenation {
 
+    //  3/24/2022 solution
+    public int[] getConcatenation(int[] nums) {
+        int len = nums.length;
+        int[] arr = new int[len * 2];
+        int index = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i >= len) {
+                arr[i] = nums[index++];
+            } else {
+                arr[i] = nums[i];
+            }
+        }
+
+        return arr;
+    }
+
     public int[] getConcatenation(int[] nums) {
         int[] arr = new int[nums.length * 2];
         int index = 0;
