@@ -13,6 +13,18 @@ public class MostWordsFound {
 
     //  3/26/2022 solution
     public int mostWordsFound(String[] sentences) {
+        int maxWords = 0;
+
+        for (String sentence : sentences) {
+            String[] words = sentence.split(" ");
+            maxWords = Math.max(words.length, maxWords);
+        }
+
+        return maxWords;
+    }
+
+    //  3/26/2022 solution
+    public int mostWordsFound(String[] sentences) {
         int max = 1;
 
         for (int i = 0; i < sentences.length; i++) {
