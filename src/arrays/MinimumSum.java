@@ -11,9 +11,8 @@ Return the minimum possible sum of new1 and new2.
 
 public class MinimumSum {
 
-    // 3/27/2022 unfinished solution
+    // 3/28/2022 solution
     public int minimumSum(int num) {
-        int num = 2932;
         String number = String.valueOf(num);
         int[] arr = new int[10];
 
@@ -26,18 +25,41 @@ public class MinimumSum {
         String end = "";
         int beginning = 0;
 
-        while (beginning < 2) {
-
-        }
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != 0) {
-                start += String.valueOf(i);
-                beginning++;
+                int repeat = arr[i];
+                while (beginning < 2 && repeat > 0) {
+                    start += String.valueOf(i);
+                    beginning++;
+                    arr[i]--;
+                    repeat--;
+                }
             }
-
             if (beginning == 2) {
                 break;
             }
         }
+
+        beginning = 0;
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] != 0) {
+                int repeat = arr[i];
+                while (beginning < 2 && repeat > 0) {
+                    end += String.valueOf(i);
+                    beginning++;
+                    arr[i]--;
+                    repeat--;
+                }
+            }
+            if (beginning == 2) {
+                break;
+            }
+        }
+
+        String first = start.substring(0, 1) + end.substring(0, 1);
+        String second = start.substring(1) + end.substring(1);
+
+        return Integer.valueOf(first) + Integer.valueOf(second);
     }
 }
