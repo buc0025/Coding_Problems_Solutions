@@ -16,19 +16,21 @@ format mentioned above and be sorted in non-decreasing order first by columns an
 
 public class CellsInRange {
 
-    // 3/29/2022 unfinished solution
+    // 3/30/2022 solution
     public List<String> cellsInRange(String s) {
         int row1 = Integer.parseInt(s.substring(1,2));
         int row2 = Integer.parseInt(s.substring(4));
-        int rows = Math.max(row1, row2);
-        List<String> cells = new ArrayList<>();
         int col1 = s.charAt(0);
         int col2 = s.charAt(3);
+        List<String> cells = new ArrayList<>();
 
-        // Outputs number of elements in list
-        for (int i = 0; i <= (col2 - col1); i++) {
-            for (int j = 1; j <= rows; j++) {
+        for (int i = col1; i <= col2; i++) {
+            char column = (char) i;
+            for (int j = row1; j <= row2; j++) {
+                cells.add(column + "" + j);
             }
         }
+
+        return cells;
     }
 }
