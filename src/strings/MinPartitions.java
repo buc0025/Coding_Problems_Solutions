@@ -10,6 +10,18 @@ that they sum up to n.
 
 public class MinPartitions {
 
+    // 3/31/2022 solution
+    public int minPartitions(String n) {
+        int max = 0;
+
+        for (int i = 0; i < n.length(); i++) {
+            int number = n.charAt(i) - 48;
+            max = Math.max(number, max);
+        }
+
+        return max;
+    }
+
     // Shortened runtime by traversing through string from both ends
     public int minPartitions(String n) {
         int max = 0;
