@@ -17,6 +17,34 @@ Return the number of rods that have all three colors of rings on them.
 
 public class CountPoints {
 
+    // 4/3/2022 solution
+    public int countPoints(String rings) {
+        Map<Integer, String> map = new HashMap<>();
+        int rodsWithRings = 0;
+
+        for (int i = 0; i < rings.length(); i+=2) {
+
+            int ring = Integer.valueOf(rings.substring(i + 1, i + 2));
+            String color = rings.substring(i, i + 1);
+
+            if (map.containsKey(ring)) {
+                String colors = map.get(ring) + color;
+                map.put(ring, colors);
+            } else {
+                map.put(ring, color);
+            }
+        }
+
+        for (int color : map.keySet()) {
+            String colors = map.get(color);
+            if (colors.contains("B") && colors.contains("R") && colors.contains("G")) {
+                rodsWithRings++;
+            }
+        }
+
+        return rodsWithRings;
+    }
+
     // 4/2/2022 unfinished solution
     public int countPoints(String rings) {
         int[] arr = new int[10];
