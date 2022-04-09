@@ -19,7 +19,9 @@ capacity representing the watering can capacity, return the number of steps need
 
 public class WateringPlants {
 
+    // 4/8/2022 Unfinished solution
     public int wateringPlants(int[] plants, int capacity) {
+        int refilled = capacity;
         int lastPlant = plants.length;
         int totalSteps = 0;
         int plant = 0;
@@ -29,12 +31,22 @@ public class WateringPlants {
             if (plants[currentPlant] < capacity) {
                 totalSteps++;
                 currentPlant++;
+                capacity =- plants[--currentPlant];
             }
             if (plants[currentPlant] > capacity) {
                 totalSteps += currentPlant; // walk back to river
                 totalSteps += (currentPlant + 1); // walk back to current plant
+                capacity = refilled;
             }
-
+            if (plants[currentPlant] == capacity) {
+                totalSteps += currentPlant; // walk back to river
+                totalSteps += (currentPlant + 1); // walk back to current plant
+                capacity = refilled;
+                currentPlant++;
+            }
+            plant++;
         }
+
+        return totalSteps;
     }
 }
