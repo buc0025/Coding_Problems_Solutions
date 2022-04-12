@@ -8,7 +8,7 @@ one.
 
 public class ThreeLetterCollection {
 
-    // 4/10/2022 unfinished solution
+    // 4/11/2022 solution
     public static String[] threeLetterCollection(String s) {
         int arrLen = 0;
         if (s.length() == 3) {
@@ -18,5 +18,16 @@ public class ThreeLetterCollection {
         } else {
             arrLen = s.length() - 2;
         }
+
+        String[] groupings = new String[arrLen];
+        int index = 0;
+
+        for (int i = 0; i < s.length() - 2; i++) {
+            groupings[index] = s.substring(i, i + 3);
+            index++;
+        }
+
+        Arrays.sort(groupings);
+        return groupings;
     }
 }
