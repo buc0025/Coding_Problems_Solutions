@@ -9,7 +9,7 @@ duplicate letters (keeping the last occurence), and then design a glyph from wha
 
 public class Sigilize {
 
-    // 4/14/2022 unfinished solution
+    // 4/16/2022 solution
     public static String sigilize(String desire) {
         desire = desire.toUpperCase();
         Set<Character> vowels = new HashSet<>();
@@ -20,6 +20,7 @@ public class Sigilize {
         vowels.add('U');
         String backwards = "";
         String word = "";
+        String sigil = "";
 
         for (int i = 0; i < desire.length(); i++) {
             if (desire.charAt(i) != ' ' && !vowels.contains(desire.charAt(i))) {
@@ -30,10 +31,15 @@ public class Sigilize {
         for (int i = word.length() - 1; i >= 0; i--) {
             String letter = word.substring(i, i + 1);
             String leftover = word.substring(0, i);
-            if (!leftover.contains(letter)) {
+            if (!backwards.contains(letter)) {
                 backwards += letter;
             }
-            System.out.println(letter);
         }
+
+        for (int i = backwards.length() - 1; i >= 0; i--) {
+            sigil += backwards.substring(i, i + 1);
+        }
+
+        return sigil;
     }
 }
