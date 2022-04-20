@@ -10,8 +10,19 @@ Leading Zeros are the zeros before a whole number which don't affect the value (
 
 public class RemoveLeading {
 
-    // 4/18/2022 unfinished solution
+    // 4/19/2022 solution
     public static String removeLeadingTrailing(String n) {
+        int num = 0;
+
+        for (int i = 0; i < n.length(); i++) {
+            if (n.charAt(i) != '.') {
+                num += Integer.parseInt(n.substring(i, i + 1));
+            }
+        }
+
+        if (num == 0) {
+            return "0";
+        }
         for (int i = 0; i < n.length(); i++) {
             if (n.charAt(i) != '0') {
                 n = n.substring(i);
@@ -30,6 +41,14 @@ public class RemoveLeading {
 
         if (n.charAt(n.length() - 1) == '.') {
             n = n.substring(0, n.length() - 1);
+        }
+
+        if (n.length() == 0) {
+            return "0";
+        }
+
+        if (n.charAt(0) == '.') {
+            return "0" + n;
         }
 
         return n;
