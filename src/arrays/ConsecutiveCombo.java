@@ -30,7 +30,7 @@ public class ConsecutiveCombo {
                 return false;
             }
         }
-        
+
         return true;
     }
 }
