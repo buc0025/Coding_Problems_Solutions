@@ -19,9 +19,8 @@ $ + earned that day (rounded to the nearest hundreth)
 
 public class OverTime {
 
-    // 4/25/2022 unfinished solution
+    // 4/26/2022 solution
     public static String overTime(double[] arr) {
-        double[] arr = {13, 21, 38.6, 1.8};
         double hours = arr[1] - arr[0];
         double multiplier = arr[2] * arr[3];
         double pay = 0;
@@ -37,6 +36,16 @@ public class OverTime {
         }
 
         total += String.valueOf(pay);
+
+        int decimal = total.indexOf(".");
+
+        if (total.length() - decimal < 3) {
+            total += "0";
+        } else {
+            total = total.substring(0, decimal + 3);
+        }
+
+        return total;
     }
 
     // Solution doesn't output rounded answer
