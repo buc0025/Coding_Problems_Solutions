@@ -13,6 +13,47 @@ right-angled triangle.
 
 public class IsRightAngle {
 
+    // 4/29/2022 unfinished solution
+    public static boolean isRightAngle(int[] arr, String desc) {
+        if (arr.length > 3) {
+            return false;
+        }
+
+        if (arr.length == 0) {
+            return true;
+        }
+
+        if (arr.length == 3) {
+            boolean rightAngle = false;
+            int degrees = 180;
+            if (desc.equals("angle")) {
+                for (int a : arr) {
+                    if (a == 90) {
+                        rightAngle = true;
+                    }
+                    degrees -= a;
+                }
+                if (rightAngle && degrees == 0) {
+                    return true;
+                }
+            } else {
+                int a = (int) Math.pow(arr[0], 2);
+                int b = (int) Math.pow(arr[1], 2);
+                int c = (int) Math.pow(arr[2], 2);
+
+                if (a + b == c || a + c == b || c + b == a) {
+                    return true;
+                }
+            }
+        }
+
+        if (arr.length == 1) {
+            if (arr[0] > 0 && arr[0] < 90) {
+                return true;
+            }
+        }
+    }
+
     //Still not passing 3 test cases dealing with angles going over 180
     public static boolean isRightAngle(int[] arr, String desc) {
         Arrays.sort(arr);
