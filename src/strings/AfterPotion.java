@@ -13,6 +13,25 @@ Create a function that returns a string according to these rules, removing the p
 
 public class AfterPotion {
 
+    // 5/5/2022 unfinished solution
+    public static String afterPotion(String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 1; i < str.length(); i+=2) {
+            if (str.charAt(i) != 'A' && str.charAt(i) != 'B') {
+                stringBuilder.append(str.charAt(i - 1));
+            } else if (str.charAt(i) == 'A') {
+                int n = Integer.valueOf(str.substring(i - 1, i)) + 1;
+                stringBuilder.append(n);
+            } else {
+                int n = Integer.valueOf(str.substring(i - 1, i)) - 1;
+                stringBuilder.append(n);
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
     public static String afterPotion(String str) {
         String number = "";
         String[] arr = str.split("");
