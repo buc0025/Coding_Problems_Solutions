@@ -7,7 +7,7 @@ Create a function that returns true if each pair of adjacent numbers in an array
 
 public class SharedDigits {
 
-    // 5/7/2022 unfinished solution
+    // 5/8/2022 solution
     public static boolean sharedDigits(int[] num) {
         boolean shared = false;
         for (int i = 0; i < num.length - 1; i++) {
@@ -26,6 +26,7 @@ public class SharedDigits {
             if (!shared) {
                 return false;
             }
+            shared = false;
         }
 
         return true;
