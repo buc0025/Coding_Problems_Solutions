@@ -8,6 +8,49 @@ If there is no common prefix, return an empty string "".
 
 public class LongestCommonPrefix {
 
+    // 5/11/2022 solution
+    public String longestCommonPrefix(String[] strs) {
+        int min = Integer.MAX_VALUE;
+        for (String str : strs) {
+            min = Math.min(str.length(), min);
+        }
+
+        if (min == 0) {
+            return "";
+        }
+
+        String word = "";
+
+        for (String str : strs) {
+            if (str.length() == min) {
+                word = str;
+                break;
+            }
+        }
+
+        String ans = "";
+
+        for (int i = 0; i < word.length(); i++) {
+            int matches = 0;
+            boolean match = true;
+            for (String str : strs) {
+                if (word.substring(i, i + 1).equals(str.substring(i, i + 1))) {
+                    matches++;
+                } else {
+                    match = false;
+                    break;
+                }
+            }
+            if (matches == strs.length && match) {
+                ans += word.substring(i, i + 1);
+            } else {
+                break;
+            }
+        }
+
+        return ans;
+    }
+
     /*
     Originally thought of using a set to keep track of common prefixes when looping through array. The size of the set will be the
     same as the index of the string they have in common but issue will arise if there are repeating chars in a string such as
