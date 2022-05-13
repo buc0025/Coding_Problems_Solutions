@@ -10,6 +10,45 @@ Increment the large integer by one and return the resulting array of digits.
 
 public class PlusOne {
 
+    // 5/12/2022 solution
+    public int[] plusOne(int[] digits) {
+        StringBuilder str = new StringBuilder();
+        boolean carry = false;
+
+        if (digits[digits.length - 1] + 1 == 10) {
+            str.append(0);
+            carry = true;
+        } else {
+            str.append(digits[digits.length - 1] + 1);
+        }
+
+        for (int i = digits.length - 2; i >= 0; i--) {
+            if (carry) {
+                int n = digits[i] + 1;
+                if (n == 10) {
+                    str.append(0);
+                } else {
+                    str.append(n);
+                    carry = false;
+                }
+            } else {
+                str.append(digits[i]);
+            }
+        }
+
+        if (carry) {
+            str.append(1);
+        }
+
+        int[] ans = new int[str.length()];
+        String nums = str.reverse().toString();
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = Integer.parseInt(nums.substring(i, i + 1));
+        }
+
+        return ans;
+    }
+
     public int[] plusOne(int[] digits) {
         int carry = 0;
         digits[digits.length - 1] += 1; // adding 1 to the last element in given array
