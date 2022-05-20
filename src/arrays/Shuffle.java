@@ -8,6 +8,19 @@ Return the array in the form [x1,y1,x2,y2,...,xn,yn].
 
 public class Shuffle {
 
+    // 5/19/2022 solution
+    public int[] shuffle(int[] nums, int n) {
+        int[] arr = new int[nums.length];
+        int index = 0;
+
+        for (int i = 0; i < nums.length / 2; i++) {
+            arr[index++] = nums[i];
+            arr[index++] = nums[n + i];
+        }
+
+        return arr;
+    }
+
     public int[] shuffle(int[] nums, int n) {
 
         int[] arr = new int[nums.length];
