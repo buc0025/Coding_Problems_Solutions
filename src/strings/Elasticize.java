@@ -11,31 +11,42 @@ If the word has an odd length, the effective central character of the word will 
 
 public class Elasticize {
 
-    // 5/20/2022 unfinished solution
+    // 5/21/2022 solution
     public static String elasticize(String word) {
-        StringBuilder stringBuilder = new StringBuilder();
-
         if (word.length() < 3) {
-            System.out.println(word);
+            return word;
         }
 
         int half = word.length() / 2;
+        int left = 1;
+        int right = half;
+
+        StringBuilder leftWord = new StringBuilder();
+        StringBuilder rightWord = new StringBuilder();
+
+        for (int i = 0; i < half; i++) {
+            for (int j = 0; j < left; j++) {
+                leftWord.append(word.charAt(i));
+            }
+            left++;
+        }
 
         if (word.length() % 2 == 0) {
-            int left = 1;
-            int right = half;
-            for (int i = 0; i < half; i++) {
-                for (int j = 0; j < left; j++) {
-                    stringBuilder.append(word.charAt(i));
+
+            for (int i = half; i < word.length(); i++) {
+                for (int j = right; j > 0; j--) {
+                    rightWord.append(word.charAt(i));
                 }
-                left++;
+                right--;
             }
+        } else {
             for (int i = half; i < word.length(); i++) {
                 for (int j = right; j >= 0; j--) {
-                    stringBuilder.append(word.charAt(i));
+                    rightWord.append(word.charAt(i));
                 }
                 right--;
             }
         }
+        return leftWord.toString() + rightWord.toString();
     }
 }
