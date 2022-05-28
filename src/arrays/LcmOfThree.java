@@ -28,7 +28,7 @@ public class LcmOfThree {
             }
             max = n * i;
         }
-        
+
         return result;
     }
 }
