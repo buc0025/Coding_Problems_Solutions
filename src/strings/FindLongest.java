@@ -8,14 +8,22 @@ first one.
 
 public class FindLongest {
 
-    // 6/5/2022 unfinished solution
+    // 6/6/2022 solution
     public static String findLongest(String sentence) {
         String[] words = sentence.split(" ");
         String maxWord = "";
 
         for (String word : words) {
             StringBuilder stringBuilder = new StringBuilder();
+            int start = 0;
             for (int i = 0; i < word.length(); i++) {
+                if (Character.isLetter(word.charAt(i))) {
+                    start = i;
+                    break;
+                }
+            }
+
+            for (int i = start; i < word.length(); i++) {
                 if (Character.isLetter(word.charAt(i))) {
                     stringBuilder.append(word.charAt(i));
                 } else {
@@ -28,6 +36,6 @@ public class FindLongest {
             }
         }
 
-        return maxWord;
+        return maxWord.toLowerCase();
     }
 }
