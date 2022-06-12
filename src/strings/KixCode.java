@@ -12,7 +12,7 @@ If there is a character between the house number and the suffix, we need to repl
 
 public class KixCode {
 
-    // 6/9/2022 unfinished solution
+    // 6/12/2022 solution
     public static String kixCode(String addr) {
         String[] arr = addr.split(", ");
         String house = arr[2].substring(0, 4);
@@ -33,10 +33,10 @@ public class KixCode {
             char n = arr[1].charAt(i);
             if (Character.isDigit(n)) {
                 stringBuilder.append(n);
-            } else if (n == ' ') {
-                stringBuilder.append('X');
-            } else {
+            } else if (Character.isLetter(n)) {
                 stringBuilder.append(arr[1].substring(i, i + 1).toUpperCase());
+            } else {
+                stringBuilder.append('X');
             }
         }
 
