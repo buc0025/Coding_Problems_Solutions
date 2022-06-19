@@ -8,8 +8,12 @@ reverse-alphabetically (DESC).
 
 public class SortContacts {
 
-    // 6/17/2022 unfinished solution
+    // 6/18/2022 solution
     public static String[] sortContacts(String[] arr, String sortBy) {
+        if (arr == null) {
+            return new String[0];
+        }
+
         String[] result = new String[arr.length];
         String[] lastNames = new String[arr.length];
 
@@ -25,7 +29,7 @@ public class SortContacts {
 
         Arrays.sort(lastNames);
 
-        if (sortBy.equals("DESC")) {
+        if (sortBy.equals("ASC")) {
             for (int i = 0; i < lastNames.length; i++) {
                 for (int j = 0; j < arr.length; j++) {
                     if (arr[j].contains(lastNames[i])) {
