@@ -14,6 +14,28 @@ public class IsSubsequence {
     string s, we keep track of where the index was last left off in string t. We keep a count every time the elements match up and
      compare it to the length of string s.
      */
+
+    // 6/22/2022 unfinished solution
+    public boolean isSubsequence(String s, String t) {
+        int tIndex = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            boolean subsequence = false;
+            for (int j = tIndex; j < t.length(); j++) {
+                if (s.charAt(i) == t.charAt(j)) {
+                    tIndex = j;
+                    subsequence = true;
+                    break;
+                }
+            }
+            if (!subsequence) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public boolean isSubsequence(String s, String t) {
         if (s.length() == 0) {
             return true;
