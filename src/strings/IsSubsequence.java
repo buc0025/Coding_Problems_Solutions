@@ -15,7 +15,7 @@ public class IsSubsequence {
      compare it to the length of string s.
      */
 
-    // 6/22/2022 unfinished solution
+    // 6/23/2022 solution
     public boolean isSubsequence(String s, String t) {
         int tIndex = 0;
 
@@ -23,7 +23,7 @@ public class IsSubsequence {
             boolean subsequence = false;
             for (int j = tIndex; j < t.length(); j++) {
                 if (s.charAt(i) == t.charAt(j)) {
-                    tIndex = j;
+                    tIndex = ++j;
                     subsequence = true;
                     break;
                 }
