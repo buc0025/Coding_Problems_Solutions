@@ -9,6 +9,29 @@ Return the letter that was added to t.
  */
 public class FindTheDifference {
 
+    // 6/24/2022 solution
+    public char findTheDifference(String s, String t) {
+        int[] sArr = new int[26];
+        int[] tArr = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            sArr[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            tArr[t.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < sArr.length; i++) {
+            if (sArr[i] != tArr[i]) {
+                int n = i + 97;
+                return (char)n;
+            }
+        }
+
+        return ' ';
+    }
+
     // Top solution was to add all the ascii values of both strings and find the difference. The difference will be the char
     public char findTheDifference(String s, String t) {
         int[] sArr = new int[26];
