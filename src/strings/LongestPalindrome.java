@@ -9,6 +9,30 @@ Letters are case sensitive, for example, "Aa" is not considered a palindrome her
 
 public class LongestPalindrome {
 
+    // 7/1/2022 unfinished solution
+    public int longestPalindrome(String s) {
+        int[] upperCase = new int[26];
+        int[] lowerCase = new int[26];
+        int longestOdd = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isUpperCase(s.charAt(i))) {
+                upperCase[s.charAt(i) - 'A']++;
+            } else {
+                lowerCase[s.charAt(i) - 'a']++;
+            }
+        }
+
+        for (int i = 0; i < upperCase.length; i++) {
+            if (upperCase[i] > longestOdd) {
+                longestOdd = upperCase[i];
+            }
+            if (lowerCase[i] > longestOdd) {
+                longestOdd = lowerCase[i];
+            }
+        }
+    }
+
     public int longestPalindrome(String s) {
         int[] lower = new int[26];
         int[] upper = new int[26];
