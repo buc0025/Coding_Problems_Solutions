@@ -11,6 +11,25 @@ Return the minimum possible sum of new1 and new2.
 
 public class MinimumSum {
 
+    // 7/12/2022 solution
+    public int minimumSum(int num) {
+        int[] arr = new int[4];
+        int index = 0;
+
+        while (num > 0) {
+            arr[index] = num % 10;
+            num /= 10;
+            index++;
+        }
+
+        Arrays.sort(arr);
+
+        int new1 = arr[0] * 10 + arr[2];
+        int new2 = arr[1] * 10 + arr[3];
+
+        return new1 + new2;
+    }
+
     // 3/28/2022 solution
     public int minimumSum(int num) {
         String number = String.valueOf(num);
