@@ -15,6 +15,31 @@ indexOf().
 
 public class StrStr {
 
+    // 7/22/2022 solution
+    public int strStr(String haystack, String needle) {
+        int len = needle.length();
+
+        if (len == 0) {
+            return 0;
+        }
+
+        if (haystack.length() == len) {
+            if (haystack.equals(needle)) {
+                return 0;
+            } else {
+                return -1;
+            }
+        }
+
+        for (int i = 0; i <= haystack.length() - len; i++) {
+            if (haystack.substring(i, i + len).equals(needle)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     // 5/17/2022 solution
     public int strStr(String haystack, String needle) {
         if (needle.length() == 0) {
