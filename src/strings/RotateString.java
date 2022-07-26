@@ -9,6 +9,22 @@ then it will be 'bcdea' after one shift on s. Return true if and only if s can b
 
 public class RotateString {
 
+    // 7/25/2022
+    public boolean rotateString(String s, String goal) {
+        if (s.equals(goal)) {
+            return true;
+        }
+
+        for (int i = 1; i < s.length(); i++) {
+            String shift = s.substring(i) + s.substring(0, i);
+            if (shift.equals(goal)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /* o(n) runtime instead of o(n2) by checking if s.charAt(i) is equal to first char of goal. If it is then I rotate s to see if
     it matches goal.
     */
