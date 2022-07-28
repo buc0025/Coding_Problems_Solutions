@@ -9,7 +9,7 @@ then it will be 'bcdea' after one shift on s. Return true if and only if s can b
 
 public class RotateString {
 
-    // 7/25/2022
+    // 7/25/2022 solution
     public boolean rotateString(String s, String goal) {
         if (s.equals(goal)) {
             return true;
