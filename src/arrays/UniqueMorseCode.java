@@ -19,6 +19,24 @@ Return the number of different transformations among all words we have.
 
 public class UniqueMorseCode {
 
+    // 8/2/2022 solution
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",
+                ".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        Set<String> set = new HashSet<>();
+
+        for (String word : words) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < word.length(); i++) {
+                int n = word.charAt(i) - 'a';
+                builder.append(morse[n]);
+            }
+            set.add(builder.toString());
+        }
+
+        return set.size();
+    }
+
     public int uniqueMorseRepresentations(String[] words) {
         String[] arr = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",
                 ".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
