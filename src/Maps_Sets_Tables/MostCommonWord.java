@@ -30,6 +30,16 @@ public class MostCommonWord {
         int max = 0;
         String answer = "";
 
+        if (banned.length == 0) {
+            for (String key : map.keySet()) {
+                if (map.get(key) > max) {
+                    max = map.get(key);
+                    answer = key;
+                }
+            }
+            return answer;
+        }
+
         for (String key : map.keySet()) {
             boolean isBanned = false;
             for (String ban : banned) {
