@@ -9,6 +9,29 @@ The distance between two indices i and j is abs(i - j), where abs is the absolut
 
 public class ShortestToChar {
 
+    // 8/8/2022 solution
+    public int[] shortestToChar(String s, char c) {
+        int[] arr = new int[s.length()];
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                list.add(i);
+            }
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            int min = s.length();
+            for (int j = 0; j < list.size(); j++) {
+                if (Math.abs(i - list.get(j)) < min) {
+                    min = Math.abs(i - list.get(j));
+                    arr[i] = min;
+                }
+            }
+        }
+        return arr;
+    }
+
     public int[] shortestToChar(String s, char c) {
         List<Integer> list = new ArrayList<>();
 
