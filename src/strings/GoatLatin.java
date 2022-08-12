@@ -20,6 +20,41 @@ import java.util.HashSet;
 
 public class GoatLatin {
 
+    // 8/11/2022 solution
+    public String toGoatLatin(String sentence) {
+        String vowels = "aeiouAEIOU";
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < vowels.length(); i++) {
+            set.add(vowels.charAt(i));
+        }
+
+        StringBuilder stringbuilder = new StringBuilder();
+        String[] words = sentence.split(" ");
+        int a = 1;
+
+        for (String word : words) {
+            if (set.contains(word.charAt(0))) {
+                stringbuilder.append(word);
+                stringbuilder.append("ma");
+            } else {
+                stringbuilder.append(word.substring(1));
+                stringbuilder.append(word.charAt(0));
+                stringbuilder.append("ma");
+            }
+
+            for (int i = 0; i < a; i++) {
+                stringbuilder.append("a");
+            }
+
+            a++;
+            stringbuilder.append(" ");
+        }
+
+        int len = stringbuilder.length();
+
+        return stringbuilder.substring(0, len - 1).toString();
+    }
+
     public String ToGoatLatin(String sentence) {
         String[] arr = sentence.split(" ");
         StringBuilder stringbuilder = new StringBuilder();
