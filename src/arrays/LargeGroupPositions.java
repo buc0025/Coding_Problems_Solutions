@@ -20,6 +20,36 @@ public class LargeGroupPositions {
     of the large group, i is assigned to where the last index of the large group left off which will still be o(n) time complexity.
      */
     public List<List<Integer>> largeGroupPositions(String s) {
+
+        // 8/16/2022 solution
+        public List<List<Integer>> largeGroupPositions(String s) {
+            List<List<Integer>> ans = new ArrayList<>();
+
+            for (int i = 0; i < s.length(); i++) {
+                char a = s.charAt(i);
+                if (i + 2 < s.length() && s.charAt(i + 1) == a && s.charAt(i + 2) == a) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(i);
+                    for (int j = i; j < s.length(); j++) {
+                        if (s.charAt(j) != a) {
+                            list.add(j - 1);
+                            ans.add(list);
+                            i = j - 1;
+                            break;
+                        }
+                        if (j == s.length() - 1) {
+                            list.add(j);
+                            ans.add(list);
+                            i = j;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return ans;
+        }
+
         List<List<Integer>> ans = new ArrayList<>();
 
         for (int i = 0; i < s.length(); i++) {
