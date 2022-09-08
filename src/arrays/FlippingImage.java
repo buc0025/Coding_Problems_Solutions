@@ -12,6 +12,30 @@ results in [1, 0, 0].
 
 public class FlippingImage {
 
+    // 8/16/2022 solution
+    public int[][] flipAndInvertImage(int[][] image) {
+        int len = image.length;
+        int[][] matrix = new int[len][len];
+
+        for (int i = 0; i < len; i++) {
+            int index = 0;
+            for (int j = len - 1; j >= 0; j--) {
+                matrix[i][index] = image[i][j];
+                index++;
+            }
+
+            for (int k = 0; k < len; k++) {
+                if (matrix[i][k] == 0) {
+                    matrix[i][k] = 1;
+                } else {
+                    matrix[i][k] = 0;
+                }
+            }
+        }
+
+        return matrix;
+    }
+
     public int[][] flipAndInvertImage(int[][] A) {
         int[][] ans = new int[A.length][A.length];
         int index = 0;
