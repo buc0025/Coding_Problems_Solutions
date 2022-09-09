@@ -9,6 +9,39 @@ Note that after backspacing an empty text, the text will continue empty.
 
 public class BackspaceCompare {
 
+    // 8/18/2022 unfinished solution
+    public boolean backspaceCompare(String s, String t) {
+        StringBuilder s1 = new StringBuilder();
+        StringBuilder s2 = new StringBuilder();
+        int sLen = 0;
+        int tLen = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '#') {
+                sLen++;
+            }
+            if (sLen > 0) {
+                i -= sLen;
+                sLen = 0;
+            } else {
+                s1.append(s.charAt(i));
+            }
+        }
+
+        for (int i = t.length() - 1; i >= 0; i--) {
+            if (t.charAt(i) == '#') {
+                tLen++;
+            }
+            if (tLen > 0) {
+                i -= tLen;
+                tLen = 0;
+            } else {
+                s2.append(t.charAt(i));
+            }
+        }
+
+        return s1.toString().equals(s2.toString());
+    }
+
     public boolean backspaceCompare(String s, String t) {
         StringBuilder string1 = new StringBuilder();
         StringBuilder string2 = new StringBuilder();
