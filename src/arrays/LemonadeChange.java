@@ -15,6 +15,44 @@ Return true if and only if you can provide every customer with correct change.
 
 public class LemonadeChange {
 
+    // 8/25/2022 solution
+    public boolean lemonadeChange(int[] bills) {
+        if (bills[0] != 5) {
+            return false;
+        }
+
+        int fives = 1;
+        int tens = 0;
+
+        for (int i = 1; i < bills.length; i++) {
+            if (bills[i] == 5) {
+                fives++;
+            }
+            if (bills[i] == 10) {
+                if (fives == 0) {
+                    return false;
+                } else {
+                    tens++;
+                    fives--;
+                }
+            }
+            if (bills[i] == 20) {
+                if (fives == 0) {
+                    return false;
+                } else if (tens == 0 && fives < 3) {
+                    return false;
+                } else if (tens >= 1) {
+                    fives--;
+                    tens--;
+                } else {
+                    fives-=3;
+                }
+            }
+        }
+
+        return true;
+    }
+
     /*
     Initially thought of using a map to hold the denominations for $5, $10, $20 and their occurrences. An array made more sense since
     we're only keeping track of 3 different denominations. The only denominations that might return false are $10 and $20. We have
