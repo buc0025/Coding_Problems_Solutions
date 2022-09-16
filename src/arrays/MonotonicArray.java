@@ -13,6 +13,27 @@ public class MonotonicArray {
 
     // 9/15/2022 solution
     public boolean isMonotonic(int[] nums) {
+        boolean increase = false;
+        boolean decrease = false;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                increase = true;
+            }
+            if (nums[i] < nums[i - 1]) {
+                decrease = true;
+            }
+
+            if (increase && decrease) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // 9/15/2022 solution
+    public boolean isMonotonic(int[] nums) {
         if (nums[0] > nums[nums.length - 1]) {
             for (int i = 1; i < nums.length; i++) {
                 if (nums[i] > nums[i - 1]) {
