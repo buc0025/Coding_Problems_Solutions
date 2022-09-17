@@ -12,6 +12,28 @@ public class SortByParity {
 
     // 9/16/2022 solution
     public int[] sortArrayByParity(int[] nums) {
+        int left = nums.length - 1;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 != 0) {
+                while (i < left) {
+                    if (nums[left] % 2 == 0) {
+                        int odd = nums[i];
+                        nums[i] = nums[left];
+                        nums[left] = odd;
+                        left--;
+                        break;
+                    }
+                    left--;
+                }
+            }
+        }
+
+        return nums;
+    }
+
+    // 9/16/2022 solution
+    public int[] sortArrayByParity(int[] nums) {
         List<Integer> even = new ArrayList<>();
         List<Integer> odd = new ArrayList<>();
 
