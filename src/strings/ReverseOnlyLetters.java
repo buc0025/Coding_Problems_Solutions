@@ -7,6 +7,30 @@ reverse their positions.
 
 public class ReverseOnlyLetters {
 
+    // 9/20/2022 solution
+    public String reverseOnlyLetters(String s) {
+        StringBuilder reverse = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        int index = 0;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (Character.isLetter(s.charAt(i))) {
+                reverse.append(s.charAt(i));
+            }
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) {
+                result.append(reverse.substring(index, index + 1));
+                index++;
+            } else {
+                result.append(s.charAt(i));
+            }
+        }
+
+        return result.toString();
+    }
+
     /*
     Similar idea to initial solution but using a stack for cleaner code
      */
