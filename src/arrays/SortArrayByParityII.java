@@ -36,4 +36,47 @@ public class SortArrayByParityII {
 
         return nums;
     }
+
+    public int[] sortArrayByParityII(int[] nums) {
+        int[] sorted = new int[nums.length];
+        int evenIndex = 0;
+        int oddIndex = 1;
+
+        for (int n : nums) {
+            if (n % 2 == 0) {
+                sorted[evenIndex] = n;
+                evenIndex +=2;
+            } else {
+                sorted[oddIndex] = n;
+                oddIndex +=2;
+            }
+        }
+
+        return sorted;
+    }
+
+    public int[] sortArrayByParityII(int[] arr) {
+        List<Integer> even = new ArrayList<>();
+        List<Integer> odd = new ArrayList<>();
+
+        for (int a : arr) {
+            if (a % 2 == 0) {
+                even.add(a);
+            } else {
+                odd.add(a);
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                arr[i] = even.get(0);
+                even.remove(0);
+            } else {
+                arr[i] = odd.get(0);
+                odd.remove(0);
+            }
+        }
+
+        return arr;
+    }
 }
