@@ -21,6 +21,39 @@ Given a list of emails, we send one email to each address in the list.  How many
 
 public class UniqueEmails {
 
+    // 9/22/2022 solution
+    public int numUniqueEmails(String[] emails) {
+        Set<String> set = new HashSet<>();
+
+        for (String email : emails) {
+            int at = email.indexOf("@");
+            int plus = email.indexOf("+");
+
+            StringBuilder str = new StringBuilder();
+
+            String domain = email.substring(at);
+
+            if (plus != -1) {
+                for (int i = 0; i < plus; i++) {
+                    if (Character.isLetter(email.charAt(i))) {
+                        str.append(email.charAt(i));
+                    }
+                }
+            } else {
+                for (int i = 0; i < at; i++) {
+                    if (Character.isLetter(email.charAt(i))) {
+                        str.append(email.charAt(i));
+                    }
+                }
+            }
+
+            str.append(domain);
+            set.add(str.toString());
+        }
+
+        return set.size();
+    }
+
     public int numUniqueEmails(String[] emails) {
         Set<String> set = new HashSet<>();
 
