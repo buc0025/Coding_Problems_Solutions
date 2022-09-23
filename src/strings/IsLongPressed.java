@@ -10,6 +10,25 @@ characters (possibly none) being long pressed.
 
 public class IsLongPressed {
 
+    // 9/22/2022 incorrect solution
+    public boolean isLongPressedName(String name, String typed) {
+        int stop = 0;
+
+        for (int i = 0; i < name.length(); i++) {
+            for (int j = stop; j < typed.length(); j++) {
+                if (name.charAt(i) == typed.charAt(j)) {
+                    stop = j + 1;
+                    break;
+                }
+                if (j == typed.length() - 1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public boolean isLongPressedName(String name, String typed) {
         if (name.length() > typed.length()) {
             return false;
