@@ -10,6 +10,43 @@ are sorted lexicographicaly in this alien language.
 
 public class AlienDictionary {
 
+    // 9/28/2022 unfinished solution
+    public boolean isAlienSorted(String[] words, String order) {
+        if (words.length == 1) {
+            return true;
+        }
+
+        for (int i = 1; i < words.length; i++) {
+            if (!compare(words[i - 1], words[i], order)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean compare(String word1, String word2, String order) {
+        int index = 0;
+        for (int i = 0; i < word1.length(); i++) {
+            if (i < word2.length()) {
+                int a = order.indexOf(word1.charAt(i));
+                int b = order.indexOf(word2.charAt(i));
+                if (a == b) {
+                    index++;
+                    continue;
+                } else if (a < b) {
+                    return true;
+                }
+            }
+        }
+
+        if (index == word1.length()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean isAlienSorted(String[] words, String order) {
         Map<Character, Integer> map = new HashMap<>();
 
